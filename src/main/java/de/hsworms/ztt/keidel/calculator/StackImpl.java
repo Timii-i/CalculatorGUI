@@ -23,6 +23,6 @@ public class StackImpl implements StackInterface {
     @Override
     public int size() {
         // FIXME implement
-        return 0;
+        return -1;
     }
 }

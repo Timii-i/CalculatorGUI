@@ -5,15 +5,10 @@ import java.util.StringTokenizer;
 
 public class MyCollection implements Iterator<String> {
 
-    private String[] strings = new String[100];
+    private StringTokenizer stringTokenizer;
 
     public MyCollection(String inputString) {
-        StringTokenizer st = new StringTokenizer(inputString);
-        int counter = 0;
-        while (st.hasMoreTokens()) {
-            strings[counter] = st.nextToken();
-            counter++;
-        }
+        stringTokenizer = new StringTokenizer(inputString);
     }
 
 
@@ -26,8 +21,7 @@ public class MyCollection implements Iterator<String> {
      */
     @Override
     public boolean hasNext() {
-        // FIXME
-        return false;
+        return stringTokenizer.hasMoreTokens();
     }
 
     /**
@@ -38,6 +32,6 @@ public class MyCollection implements Iterator<String> {
      */
     @Override
     public String next() {
-        return null;
+        return stringTokenizer.nextToken();
     }
 }

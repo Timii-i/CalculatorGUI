@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 public class ExpressionTest {
@@ -23,11 +25,29 @@ public class ExpressionTest {
 
     @Test
     public void evaluate() {
-        Expression.Token[] tokens = expression.evaluate();
-        assertEquals(Expression.Type.LITERAL, tokens[0].getType());
-        assertEquals(Expression.Type.LITERAL, tokens[2].getType());
-        assertEquals(Expression.Type.LITERAL, tokens[4].getType());
-        assertEquals(Expression.Type.OPERATOR, tokens[1].getType());
-        assertEquals(Expression.Type.OPERATOR, tokens[3].getType());
+        // Note: this is not an example how to use the Iterator Interface!!!
+        Iterator<Expression.Token> tokenIterator = expression.getIterator();
+        assertEquals(Expression.Type.LITERAL, tokenIterator.next().getType());
+        assertEquals(Expression.Type.OPERATOR, tokenIterator.next().getType());
+        assertEquals(Expression.Type.LITERAL, tokenIterator.next().getType());
+        assertEquals(Expression.Type.OPERATOR, tokenIterator.next().getType());
+        assertEquals(Expression.Type.LITERAL, tokenIterator.next().getType());
+    }
+
+    @Test
+    public void testIteratorNotNull() {
+        Iterator<Expression.Token> tokenIterator = expression.getIterator();
+        assertNotNull(tokenIterator);
+    }
+
+    @Test
+    public void testIterator() {
+        Iterator<Expression.Token> tokenIterator = expression.getIterator();
+        int counter = 0;
+        while(tokenIterator.hasNext()) {
+            tokenIterator.next();
+            counter++;
+        }
+        assertEquals(5, counter);
     }
 }

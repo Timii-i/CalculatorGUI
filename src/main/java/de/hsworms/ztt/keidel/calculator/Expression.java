@@ -2,11 +2,13 @@ package de.hsworms.ztt.keidel.calculator;
 
 import de.hsworms.ztt.keidel.calculator.util.CharacterUtil;
 
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 public class Expression {
 
     private StringTokenizer stringTokenizer;
+    private Token[] tokens;
 
     enum Type {
         LITERAL, OPERATOR
@@ -32,10 +34,11 @@ public class Expression {
 
     public Expression(String input) {
         stringTokenizer = new StringTokenizer(input);
+        evaluate();
     }
 
-    public Token[] evaluate() {
-        Token[] tokens = new Token[100];
+    private Token[] evaluate() {
+        tokens = new Token[100];
         int counter = 0;
         while(stringTokenizer.hasMoreTokens()) {
             String item = stringTokenizer.nextToken();
@@ -51,5 +54,37 @@ public class Expression {
             }
         }
         return tokens;
+    }
+
+    public Iterator<Token> getIterator() {
+        return new TokenIterator();
+    }
+
+    private class TokenIterator implements Iterator<Token> {
+
+        private int counter = 0;
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return tokens[counter] != null;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws java.util.NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public Token next() {
+            return tokens[counter++];
+        }
     }
 }

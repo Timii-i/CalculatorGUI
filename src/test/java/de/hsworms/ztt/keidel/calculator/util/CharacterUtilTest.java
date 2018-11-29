@@ -29,4 +29,11 @@ public class CharacterUtilTest {
 
         assertFalse(CharacterUtil.isOperator('1'));
     }
+
+    @Test
+    public void dotDoesnotWork() {
+        assertFalse(CharacterUtil.isDigit('.'));
+
+        assertFalse(CharacterUtil.isOperator('.'));
+    }
 }

@@ -8,6 +8,6 @@ public class InfixToPostfixConverterTest {
 
     @Test
     public void toPostfix() {
-        assertEquals("1 2 3 4 - * +", InfixToPostfixConverter.toPostfix("1 + 2 * ( 3 - 4 )"));
+        assertEquals("1 2 3 4 - * + ", InfixToPostfixConverter.toPostfix("1 + 2 * ( 3 - 4 )"));
     }
 }

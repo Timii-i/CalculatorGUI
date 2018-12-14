@@ -38,11 +38,11 @@ public class Token {
             type = Type.LEFT_BRACKET;
         } else if (value.equalsIgnoreCase(")")) {
             type = Type.RIGHT_BRACKET;
-        } else if (value.matches("[0-9.]+")) {
-            type = Type.LITERAL;
         } else if (value.matches("[-+*/]")) {
             type = Type.OPERATOR;
             operator = ops.get(value);
+        } else if (value.matches("-?[0-9.]+")) {
+            type = Type.LITERAL;
         } else {
             throw new IllegalStateException("Programing Error! Implement: " + value);
         }

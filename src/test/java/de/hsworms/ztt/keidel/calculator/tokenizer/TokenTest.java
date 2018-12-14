@@ -31,5 +31,10 @@ public class TokenTest {
         assertTrue(token.isOperator());
         assertEquals(Token.Type.OPERATOR, token.getType());
         assertEquals(Token.Operator.MULTIPLY, token.getOperator());
+
+        token = new Token("-1");
+        assertEquals("-1", token.getValue());
+        assertFalse(token.isOperator());
+        assertEquals(Token.Type.LITERAL, token.getType());
     }
 }

@@ -1,7 +1,9 @@
 package de.hsworms.ztt.keidel.calculator;
 
 import de.hsworms.ztt.keidel.calculator.tokenizer.Token;
+import de.hsworms.ztt.keidel.calculator.tokenizer.TokenizerUtil;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -47,5 +49,42 @@ public class InfixToPostfixConverter {
         }
 
         return output.toString();
+    }
+
+    public static List<Token> toPostfixListOfToken(String infix) throws IOException {
+        List<Token> output = new ArrayList<>();
+        Deque<Token> stack = new LinkedList<>();
+
+        for (Token token : TokenizerUtil.tokenizeToTokenList(infix)) {
+
+            switch (token.getType()) {
+                case OPERATOR:
+                    while (!stack.isEmpty() && isHigherPrecedence(token.getValue(), stack.peek().getValue())) {
+                        output.add(stack.pop());
+                    }
+                    stack.push(token);
+                    break;
+                case LEFT_BRACKET:
+                    stack.push(token);
+                    break;
+                case RIGHT_BRACKET:
+                    while (stack.peek().getType() != Token.Type.LEFT_BRACKET) {
+                        output.add(stack.pop());
+                    }
+                    stack.pop();
+                    break;
+                case LITERAL:
+                    output.add(token);
+                    break;
+                default:
+                    throw new IllegalStateException("Programing Error! Implement: " + token.toString());
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            output.add(stack.pop());
+        }
+
+        return output;
     }
 }

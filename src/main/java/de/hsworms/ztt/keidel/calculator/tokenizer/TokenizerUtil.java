@@ -1,4 +1,4 @@
-package de.hsworms.ztt.keidel.calculator.util;
+package de.hsworms.ztt.keidel.calculator.tokenizer;
 
 import java.io.IOException;
 import java.io.StreamTokenizer;

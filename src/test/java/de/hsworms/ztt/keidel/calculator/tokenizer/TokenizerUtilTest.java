@@ -1,5 +1,6 @@
-package de.hsworms.ztt.keidel.calculator.util;
+package de.hsworms.ztt.keidel.calculator.tokenizer;
 
+import de.hsworms.ztt.keidel.calculator.tokenizer.TokenizerUtil;
 import org.junit.Test;
 
 import java.io.IOException;

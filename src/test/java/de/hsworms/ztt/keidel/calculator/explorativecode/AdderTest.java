@@ -1,5 +1,6 @@
-package de.hsworms.ztt.keidel.calculator;
+package de.hsworms.ztt.keidel.calculator.explorativecode;
 
+import de.hsworms.ztt.keidel.calculator.explorativecode.Adder;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

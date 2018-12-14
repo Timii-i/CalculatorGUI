@@ -1,4 +1,4 @@
-package de.hsworms.ztt.keidel.calculator;
+package de.hsworms.ztt.keidel.calculator.explore;
 
 import org.junit.After;
 import org.junit.Assert;

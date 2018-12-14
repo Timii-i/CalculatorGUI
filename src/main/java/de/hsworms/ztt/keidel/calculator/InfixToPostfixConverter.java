@@ -1,33 +1,16 @@
 package de.hsworms.ztt.keidel.calculator;
 
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import de.hsworms.ztt.keidel.calculator.tokenizer.Token;
+
+import java.util.*;
 
 /**
  * Source: <a href="https://eddmann.com/posts/shunting-yard-implementation-in-java/">Edd Mann</a>
  */
 public class InfixToPostfixConverter {
 
-    private enum Operator {
-        ADD(1), SUBTRACT(2), MULTIPLY(3), DIVIDE(4);
-        final int precedence;
-
-        Operator(int p) {
-            precedence = p;
-        }
-    }
-
-    private static Map<String, InfixToPostfixConverter.Operator> ops = new HashMap<String, Operator>() {{
-        put("+", InfixToPostfixConverter.Operator.ADD);
-        put("-", InfixToPostfixConverter.Operator.SUBTRACT);
-        put("*", InfixToPostfixConverter.Operator.MULTIPLY);
-        put("/", InfixToPostfixConverter.Operator.DIVIDE);
-    }};
-
     private static boolean isHigherPrecedence(String op, String sub) {
-        return (ops.containsKey(sub) && ops.get(sub).precedence >= ops.get(op).precedence);
+        return (Token.ops.containsKey(sub) && Token.ops.get(sub).precedence >= Token.ops.get(op).precedence);
     }
 
     public static String toPostfix(String infix) {
@@ -36,7 +19,7 @@ public class InfixToPostfixConverter {
 
         for (String token : infix.split("\\s")) {
             // operator
-            if (ops.containsKey(token)) {
+            if (Token.ops.containsKey(token)) {
                 while (!stack.isEmpty() && isHigherPrecedence(token, stack.peek())) {
                     output.append(stack.pop()).append(' ');
                 }

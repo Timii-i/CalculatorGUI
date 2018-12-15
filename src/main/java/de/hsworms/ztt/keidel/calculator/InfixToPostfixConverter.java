@@ -15,7 +15,7 @@ public class InfixToPostfixConverter {
         return (Token.ops.containsKey(sub) && Token.ops.get(sub).precedence >= Token.ops.get(op).precedence);
     }
 
-    public static String toPostfix(String infix) {
+    static String toPostfix(String infix) {
         StringBuilder output = new StringBuilder();
         Deque<String> stack = new LinkedList<>();
 
@@ -51,7 +51,7 @@ public class InfixToPostfixConverter {
         return output.toString();
     }
 
-    public static List<Token> toPostfixListOfToken(String infix) throws IOException {
+    static List<Token> toPostfixListOfToken(String infix) throws IOException {
         List<Token> output = new ArrayList<>();
         Deque<Token> stack = new LinkedList<>();
 

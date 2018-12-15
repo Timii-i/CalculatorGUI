@@ -21,7 +21,7 @@ public class TokenizerUtil {
         while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
             switch (tokenizer.ttype) {
                 case StreamTokenizer.TT_NUMBER:
-                    tokBuf.add(String.valueOf((int) tokenizer.nval));
+                    tokBuf.add(String.valueOf(tokenizer.nval));
                     break;
                 case StreamTokenizer.TT_WORD:
                     tokBuf.add(tokenizer.sval);
@@ -41,7 +41,7 @@ public class TokenizerUtil {
         while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
             switch (tokenizer.ttype) {
                 case StreamTokenizer.TT_NUMBER:
-                    tokens.add(new Token(String.valueOf((int) tokenizer.nval)));
+                    tokens.add(new Token(String.valueOf(tokenizer.nval)));
                     break;
                 case StreamTokenizer.TT_WORD:
                     tokens.add(new Token(tokenizer.sval));

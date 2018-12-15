@@ -13,9 +13,9 @@ import java.util.Stack;
  * <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">
  * Wikipedia: Reverse Polish notation (left-to-right algorithm)</a>
  */
-public class Calculator {
+class Calculator {
 
-    public static int getResult(String infix) throws IOException {
+    static double getResult(String infix) throws IOException {
         Stack<Token> tokenStack = new Stack<>();
         List<Token> tokenList = InfixToPostfixConverter.toPostfixListOfToken(infix);
         for (Token token : tokenList) {
@@ -24,8 +24,8 @@ public class Calculator {
                     tokenStack.push(token);
                     break;
                 case OPERATOR:
-                    int operandB = Integer.valueOf(tokenStack.pop().getValue());
-                    int operandA = Integer.valueOf(tokenStack.pop().getValue());
+                    double operandB = Double.valueOf(tokenStack.pop().getValue());
+                    double operandA = Double.valueOf(tokenStack.pop().getValue());
                     switch (token.getOperator()) {
                         case ADD:
                             tokenStack.push(new Token(String.valueOf(operandA + operandB)));
@@ -47,6 +47,6 @@ public class Calculator {
                     throw new IllegalStateException("Programing Error! Implement: " + token.getType());
             }
         }
-        return Integer.valueOf(tokenStack.pop().getValue());
+        return Double.valueOf(tokenStack.pop().getValue());
     }
 }

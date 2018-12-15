@@ -18,15 +18,15 @@ public class InfixToPostfixConverterTest {
     @Test
     public void toPostfixListOfToken() throws IOException {
         List<Token> tokens = InfixToPostfixConverter.toPostfixListOfToken("11* 22");
-        assertEquals("11", tokens.get(0).getValue());
-        assertEquals("22", tokens.get(1).getValue());
+        assertEquals("11.0", tokens.get(0).getValue());
+        assertEquals("22.0", tokens.get(1).getValue());
         assertEquals(Token.Operator.MULTIPLY, tokens.get(2).getOperator());
 
         tokens = InfixToPostfixConverter.toPostfixListOfToken("11* (22 + 1)");
         // 11 22 1 + *
-        assertEquals("11", tokens.get(0).getValue());
-        assertEquals("22", tokens.get(1).getValue());
-        assertEquals("1", tokens.get(2).getValue());
+        assertEquals("11.0", tokens.get(0).getValue());
+        assertEquals("22.0", tokens.get(1).getValue());
+        assertEquals("1.0", tokens.get(2).getValue());
         assertEquals(Token.Operator.ADD, tokens.get(3).getOperator());
         assertEquals(Token.Operator.MULTIPLY, tokens.get(4).getOperator());
     }

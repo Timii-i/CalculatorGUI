@@ -9,7 +9,7 @@ import java.util.Map;
 public class Token {
 
     public enum Type {
-        LITERAL, OPERATOR, LEFT_BRACKET, RIGHT_BRACKET
+        LITERAL, OPERATOR, LEFT_BRACKET, RIGHT_BRACKET, NOT_DETERMINED
     }
 
     public enum Operator {
@@ -28,7 +28,7 @@ public class Token {
         put("/", Token.Operator.DIVIDE);
     }};
 
-    private Type type;
+    private Type type = Type.NOT_DETERMINED;
     private String value;
 
     private Operator operator = null;
@@ -49,7 +49,7 @@ public class Token {
         this.value = value;
     }
 
-    public boolean isOperator() {
+    boolean isOperator() {
         return operator != null;
     }
 

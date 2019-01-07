@@ -22,5 +22,14 @@ public class CalculatorTest {
         assertEquals(-1.0, Calculator.getResult("(   1 -2)"), DELTA);
         assertEquals(-1.0, Calculator.getResult("(   1.1 -2.1)"), DELTA);
         assertEquals(0.5, Calculator.getResult("(   1.0 / 2.0)"), DELTA);
+
+        // Praktikum task: Modulo
+        assertEquals(0., Calculator.getResult("2 % 2"), DELTA);
+        assertEquals(1., Calculator.getResult("1 % 2"), DELTA);
+        assertEquals(0., Calculator.getResult("0 % 2"), DELTA);
+        assertEquals(2., Calculator.getResult("1 + 1 % 2"), DELTA);
+        assertEquals(0., Calculator.getResult("(1 + 1) % 2"), DELTA);
+        assertEquals(0., Calculator.getResult("(1 + 1) % (1 + 1)"), DELTA);
+        assertEquals(0., Calculator.getResult("(1023 + 1) % (1 + 1)"), DELTA);
     }
 }

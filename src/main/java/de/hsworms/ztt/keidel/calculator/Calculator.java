@@ -39,6 +39,9 @@ class Calculator {
                         case DIVIDE:
                             tokenStack.push(new Token(String.valueOf(operandA / operandB)));
                             break;
+                        case MODULO:
+                            tokenStack.push(new Token(String.valueOf(operandA % operandB)));
+                            break;
                         default:
                             throw new IllegalStateException("Programing Error! Implement: " + token.getOperator());
                     }

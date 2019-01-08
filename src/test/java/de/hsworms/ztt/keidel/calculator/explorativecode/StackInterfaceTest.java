@@ -23,27 +23,33 @@ public class StackInterfaceTest {
     }
 
     @Test
+    // 1
     public void testAutoBoxing() {
-        Integer one = new Integer(1);
+        Integer one = 1;
         assertEquals(one, new Integer(1));
     }
 
     @Test
+    // 2
     public void push() {
-        stack.push(new Integer(1));
-        stack.push(new Integer(2));
-        assertEquals(new Integer(2), stack.pop());
-        assertEquals(1, stack.size());
+        stack.push(1);
+        stack.push(2);
+        assertEquals(2, stack.pop());
+        assertEquals(1, stack.pop());
+
+        assertEquals(0, stack.size());
     }
 
     @Test
+    // 3
     public void pop() {
-        stack.push(new Integer(1));
-        stack.push(new Integer(2));
-        assertEquals(new Integer(2), stack.pop());
+        stack.push(1);
+        stack.push(2);
+        assertEquals(2, stack.pop());
     }
 
     @Test
+    // 4
     public void popWithException() {
         try {
             stack.pop();
@@ -57,8 +63,8 @@ public class StackInterfaceTest {
 
     @Test
     public void clearAll() {
-        stack.push(new Integer(1));
-        stack.push(new Integer(2));
+        stack.push(1);
+        stack.push(2);
         stack.clearAll();
         assertEquals(0, stack.size());
     }

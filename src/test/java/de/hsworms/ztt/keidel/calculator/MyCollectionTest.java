@@ -27,6 +27,7 @@ public class MyCollectionTest {
         int counter = 0;
         while(myCollection.hasNext()) {
             assertEquals(EXPECTED_STRINGS[counter], myCollection.next());
+            counter++;
         }
     }
 

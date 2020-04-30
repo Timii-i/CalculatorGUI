@@ -1,42 +1,27 @@
 package de.hsworms.ztt.keidel.calculator;
 
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import de.hsworms.ztt.keidel.calculator.tokenizer.Token;
+import de.hsworms.ztt.keidel.calculator.tokenizer.TokenizerUtil;
+
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Source: <a href="https://eddmann.com/posts/shunting-yard-implementation-in-java/">Edd Mann</a>
  */
 public class InfixToPostfixConverter {
 
-    private enum Operator {
-        ADD(1), SUBTRACT(2), MULTIPLY(3), DIVIDE(4);
-        final int precedence;
-
-        Operator(int p) {
-            precedence = p;
-        }
-    }
-
-    private static Map<String, InfixToPostfixConverter.Operator> ops = new HashMap<String, Operator>() {{
-        put("+", InfixToPostfixConverter.Operator.ADD);
-        put("-", InfixToPostfixConverter.Operator.SUBTRACT);
-        put("*", InfixToPostfixConverter.Operator.MULTIPLY);
-        put("/", InfixToPostfixConverter.Operator.DIVIDE);
-    }};
-
     private static boolean isHigherPrecedence(String op, String sub) {
-        return (ops.containsKey(sub) && ops.get(sub).precedence >= ops.get(op).precedence);
+        return (Token.ops.containsKey(sub) && Token.ops.get(sub).precedence >= Token.ops.get(op).precedence);
     }
 
-    public static String toPostfix(String infix) {
+    static String toPostfix(String infix) {
         StringBuilder output = new StringBuilder();
         Deque<String> stack = new LinkedList<>();
 
         for (String token : infix.split("\\s")) {
             // operator
-            if (ops.containsKey(token)) {
+            if (Token.ops.containsKey(token)) {
                 while (!stack.isEmpty() && isHigherPrecedence(token, stack.peek())) {
                     output.append(stack.pop()).append(' ');
                 }
@@ -64,5 +49,42 @@ public class InfixToPostfixConverter {
         }
 
         return output.toString();
+    }
+
+    static List<Token> toPostfixListOfToken(String infix) throws IOException {
+        List<Token> output = new ArrayList<>();
+        Deque<Token> stack = new LinkedList<>();
+
+        for (Token token : TokenizerUtil.tokenizeToTokenList(infix)) {
+
+            switch (token.getType()) {
+                case OPERATOR:
+                    while (!stack.isEmpty() && isHigherPrecedence(token.getValue(), stack.peek().getValue())) {
+                        output.add(stack.pop());
+                    }
+                    stack.push(token);
+                    break;
+                case LEFT_BRACKET:
+                    stack.push(token);
+                    break;
+                case RIGHT_BRACKET:
+                    while (stack.peek().getType() != Token.Type.LEFT_BRACKET) {
+                        output.add(stack.pop());
+                    }
+                    stack.pop();
+                    break;
+                case LITERAL:
+                    output.add(token);
+                    break;
+                default:
+                    throw new IllegalStateException("Programing Error! Implement: " + token.toString());
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            output.add(stack.pop());
+        }
+
+        return output;
     }
 }

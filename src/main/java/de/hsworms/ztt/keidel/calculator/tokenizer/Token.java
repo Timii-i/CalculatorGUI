@@ -39,6 +39,11 @@ public class Token {
 
     private Operator operator = null;
 
+    /**
+     * Evaluates input String on the fly.
+     *
+     * @param value Input String for Token constructor
+     */
     public Token(String value) {
         if (value.equalsIgnoreCase("(")) {
             type = Type.LEFT_BRACKET;

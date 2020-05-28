@@ -19,4 +19,8 @@ public class Main {
             }
         }
     }
+
+    public static double getCalculatorResult(String infix) throws IOException {
+        return Calculator.getResult(infix);
+    }
 }

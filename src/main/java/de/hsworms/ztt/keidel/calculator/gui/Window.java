@@ -3,20 +3,19 @@ package de.hsworms.ztt.keidel.calculator.gui;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.util.Arrays;
-
 public class Window extends Application implements EventHandler<ActionEvent> {
 
     // Declaring constants
-    final int padding = 5;
-    final int buttonWidth = 35;
-    final int buttonHeight = 35;
+    final int padding = 0;
+    final int buttonWidth = 75;
+    final int buttonHeight = 75;
 
     /**
      * Start a given stage (Entry point for the application)
@@ -29,9 +28,11 @@ public class Window extends Application implements EventHandler<ActionEvent> {
         BorderPane root = new BorderPane();
         VBox vbox = new VBox(padding);
 
-        // Set the CalculationField in the Top of the window
-        TextField calculationField = new TextField();
-        root.setTop(calculationField);
+        // Center the VBox in the BorderPane
+        vbox.setAlignment(Pos.CENTER);
+
+        // Setup the CalculationField in the Top of the window
+        setupCalculationField(root);
 
         // Setups all the buttons needed for the calculator
         setupButtons(vbox);
@@ -40,7 +41,7 @@ public class Window extends Application implements EventHandler<ActionEvent> {
         root.setCenter(vbox);
 
         // Set the scene to the BorderPane and show it
-        stage.setScene(new Scene(root, 300, 250));
+        stage.setScene(new Scene(root, 300, 470));
         stage.show();
     }
 
@@ -96,5 +97,13 @@ public class Window extends Application implements EventHandler<ActionEvent> {
             button.setPrefHeight(buttonHeight);
             button.setPrefWidth(buttonWidth);
         }
+    }
+
+    public void setupCalculationField(BorderPane root) {
+        TextField calculationField = new TextField();
+        calculationField.setMinHeight(100);
+        calculationField.setMaxHeight(150);
+        calculationField.setDisable(true);
+        root.setTop(calculationField);
     }
 }

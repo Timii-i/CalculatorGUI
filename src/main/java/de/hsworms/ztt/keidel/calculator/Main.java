@@ -1,21 +1,17 @@
 package de.hsworms.ztt.keidel.calculator;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 // imports for javafx
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import de.hsworms.ztt.keidel.calculator.gui.Window;
+import static javafx.application.Application.launch;
 
-public class Main extends Application {
-
-    Button button;
+public class Main {
 
     public static void main(String[] args) {
-        launch(args);
+
+        // Launches the main window class application
+        launch(Window.class, args);
 
         /*while(true) {
             System.out.println("Please type an infix mathematical expression:");
@@ -28,30 +24,6 @@ public class Main extends Application {
                 e.printStackTrace();
             }
         }*/
-    }
-
-    /**
-     * Start a given stage
-     *
-     * @param stage     the stage that should be started
-     * @throws Exception
-     */
-    @Override
-    public void start(Stage stage) throws Exception {
-        // Sets the title of the stage
-        stage.setTitle("Title of the Window");
-
-        // Initiate a new instance of a button
-        button = new Button();
-        button.setText("Click me");
-
-        // Create a new layout and add the button to it
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-
-        Scene scene = new Scene(layout,300, 250);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public static double getCalculatorResult(String infix) throws IOException {

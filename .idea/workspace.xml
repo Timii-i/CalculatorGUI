@@ -30,10 +30,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a00592f6-d182-4187-be9b-a80bb8020403" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/fpkss20.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a00592f6-d182-4187-be9b-a80bb8020403" name="Default Changelist" comment="code: added basic buttons and arranged them in the window">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/Window.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Main.java" afterDir="false" />
     </list>
@@ -45,8 +43,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,7 +63,6 @@
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -88,6 +85,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.hsworms.ztt.keidel.calculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Window" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.hsworms.ztt.keidel.calculator.gui.Window" />
+      <module name="calculatorfpkws18_main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.hsworms.ztt.keidel.calculator.gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -135,6 +145,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Window" />
         <item itemvalue="Gradle.MainFuncTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.Tests in 'calculatorfpkws18_test'" />
@@ -146,12 +157,20 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="920924bc-446b-471a-8b30-9fef1cac3821" name="Default Changelist" comment="" />
+      <changelist id="a00592f6-d182-4187-be9b-a80bb8020403" name="Default Changelist" comment="" />
       <created>1589445631665</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589445631665</updated>
     </task>
+    <task id="LOCAL-00001" summary="code: created basic window with one button in it">
+      <created>1593703512055</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1593703512055</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,40 +199,63 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gradle module import" />
-    <option name="LAST_COMMIT_MESSAGE" value="gradle module import" />
+    <MESSAGE value="code: created basic window with one button in it" />
+    <MESSAGE value="code: added basic buttons and arranged them in the window" />
+    <option name="LAST_COMMIT_MESSAGE" value="code: added basic buttons and arranged them in the window" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1593780859969">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593780859969" />
     <state x="808" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1593697860118">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="808" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593697860118" />
-    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1593703448517">
+    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1593792490210">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593703448517" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1593703268741">
+    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593792490210" />
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1593792092816">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593703268741" />
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593792092816" />
     <state width="1238" height="190" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590658347338" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1593703268741">
+    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1593792092816">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593703268741" />
+    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593792092816" />
     <state width="1238" height="190" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590658347333" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1593703268741">
+    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1593792092816">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593703268741" />
+    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593792092816" />
     <state width="1238" height="190" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590658347333" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1593703268741">
+    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1593792092816">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593703268741" />
+    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593792092816" />
     <state width="1238" height="190" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590658347334" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1588829728460">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1877" height="217" key="GridCell.Tab.1.bottom" timestamp="1593788362888">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="217" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593788362888" />
+    <state width="1877" height="217" key="GridCell.Tab.1.center" timestamp="1593788362888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="217" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593788362888" />
+    <state width="1877" height="217" key="GridCell.Tab.1.left" timestamp="1593788362888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="217" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593788362888" />
+    <state width="1877" height="217" key="GridCell.Tab.1.right" timestamp="1593788362888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="217" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593788362888" />
+    <state x="360" y="171" key="Vcs.Push.Dialog.v2" timestamp="1593703530470">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="360" y="171" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593703530470" />
     <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1588829728460" />
     <state x="390" y="228" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1590657602315">
       <screen x="0" y="23" width="1280" height="777" />

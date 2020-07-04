@@ -32,8 +32,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a00592f6-d182-4187-be9b-a80bb8020403" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/ButtonEventHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/Layout.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593870543431</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="code: reworked and implemented button handlers">
+      <created>1593877586548</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1593877586548</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -229,7 +234,8 @@
     <MESSAGE value="code: added basic buttons, arranged them in the window" />
     <MESSAGE value="code: adjusted the window, button and calculationField size" />
     <MESSAGE value="code: added EventHandler class for the buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="code: added EventHandler class for the buttons" />
+    <MESSAGE value="code: reworked and implemented button handlers" />
+    <option name="LAST_COMMIT_MESSAGE" value="code: reworked and implemented button handlers" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" width="1156" height="761" key="#Project_Structure" timestamp="1593872629466">
@@ -244,29 +250,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="808" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593697860118" />
-    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1593870541318">
+    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1593877584449">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593870541318" />
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1593877543386">
+    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593877584449" />
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1593878470877">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593877543386" />
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
     <state width="1238" height="190" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590658347338" />
-    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1593877543386">
+    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1593878470877">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593877543386" />
+    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
     <state width="1238" height="190" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590658347333" />
-    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1593877543385">
+    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1593878470877">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593877543385" />
+    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
     <state width="1238" height="190" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590658347333" />
-    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1593877543386">
+    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1593878470877">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593877543386" />
+    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
     <state width="1238" height="190" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590658347334" />
     <state width="1877" height="217" key="GridCell.Tab.1.bottom" timestamp="1593874921083">
       <screen x="0" y="0" width="1920" height="1040" />

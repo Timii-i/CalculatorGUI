@@ -58,7 +58,7 @@ public class Layout extends Application{
     public void setupButtons(VBox vbox) {
         HBox row = null;
         // Array for the Button texts
-        String[] buttonText = {"AC","C","%","/","7","8","9","*","4","5","6","-","1","2","3","+","0",".","="};
+        String[] buttonText = {"AC","C","%","/","7","8","9","*","4","5","6","-","1","2","3","+","0",",","="};
         // Array for each button
         Button[] buttons = new Button[buttonText.length];
 
@@ -74,7 +74,7 @@ public class Layout extends Application{
                 else { clearCalculation(); }
             });
 
-            // new for HBox every 4 buttons
+            // HBox to hold each row of Buttons
             if (i % 4 == 0) {
                 row = new HBox(padding);
                 vbox.getChildren().add(row);
@@ -120,7 +120,20 @@ public class Layout extends Application{
      * @param element the value of the button that's pressed
      */
     public void editCalculation(String element) {
-        calculationField.setText(calculationField.getText() + element + " ");
+        switch (element){
+            case ",":
+            case "=":
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+            case "%":
+            case "C":
+                calculationField.setText(calculationField.getText() + " " + element + " ");
+                break;
+            default:
+                calculationField.setText(calculationField.getText() + element);
+        }
         System.out.println("CalculationField: " + calculationField.getText());
     }
 

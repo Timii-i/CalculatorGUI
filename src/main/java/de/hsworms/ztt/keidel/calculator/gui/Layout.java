@@ -10,12 +10,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class Window extends Application implements EventHandler<ActionEvent> {
+import javax.swing.*;
+
+public class Layout extends Application implements EventHandler<ActionEvent> {
 
     // Declaring constants
     final int padding = 0;
     final int buttonWidth = 75;
     final int buttonHeight = 75;
+
+    TextField calculationField = new TextField();
 
     /**
      * Start a given stage (Entry point for the application)
@@ -40,13 +44,17 @@ public class Window extends Application implements EventHandler<ActionEvent> {
         // Centers the GridPane in the BorderPane
         root.setCenter(vbox);
 
+        // Scale the BorderPane with the window size
+        //root.prefWidthProperty().bind(stage.widthProperty());
+        //root.prefHeightProperty().bind(stage.heightProperty());
+
         // Set the scene to the BorderPane and show it
         stage.setScene(new Scene(root, 300, 470));
         stage.show();
     }
 
     /**
-     * Handles action when something is pressed
+     * Handles action when an event happens
      *
      * @param actionEvent the event that should be handled
      */
@@ -72,10 +80,12 @@ public class Window extends Application implements EventHandler<ActionEvent> {
             buttons[i] = new Button(buttonText[i]);
             setButtonsSize(buttons[i]);
 
-            // "newline" for hboxes every 4 buttons
+            // ButtonEventHandler Class handles the events for each button
+            buttons[i].setOnAction(new ButtonEventHandler());
+
+            // new for HBox every 4 buttons
             if (i % 4 == 0) {
                 System.out.println(i);
-                // HBox for each new row
                 row = new HBox(padding);
                 vbox.getChildren().add(row);
             }
@@ -100,10 +110,13 @@ public class Window extends Application implements EventHandler<ActionEvent> {
     }
 
     public void setupCalculationField(BorderPane root) {
-        TextField calculationField = new TextField();
         calculationField.setMinHeight(100);
         calculationField.setMaxHeight(150);
         calculationField.setDisable(true);
         root.setTop(calculationField);
+    }
+
+    public void addToCalculation(String element) {
+
     }
 }

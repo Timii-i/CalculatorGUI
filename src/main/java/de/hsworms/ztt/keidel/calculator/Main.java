@@ -1,6 +1,7 @@
 package de.hsworms.ztt.keidel.calculator;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 // imports for javafx
 import de.hsworms.ztt.keidel.calculator.gui.Layout;

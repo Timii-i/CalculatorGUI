@@ -1,25 +1,22 @@
 package de.hsworms.ztt.keidel.calculator.gui;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-
-public class Layout extends Application implements EventHandler<ActionEvent> {
+public class Layout extends Application{
 
     // Declaring constants
     final int padding = 0;
     final int buttonWidth = 75;
     final int buttonHeight = 75;
 
-    TextField calculationField = new TextField();
+    Label calculationField = new Label();
 
     /**
      * Start a given stage (Entry point for the application)
@@ -54,16 +51,6 @@ public class Layout extends Application implements EventHandler<ActionEvent> {
     }
 
     /**
-     * Handles action when an event happens
-     *
-     * @param actionEvent the event that should be handled
-     */
-    @Override
-    public void handle(ActionEvent actionEvent) {
-
-    }
-
-    /**
      * Setups every button with a name, size and place in the window
      *
      * @param vbox the columns in which the hboxes are placed
@@ -77,15 +64,18 @@ public class Layout extends Application implements EventHandler<ActionEvent> {
 
         // Give each button the corresponding name from buttonText array
         for (int i = 0; i < buttonText.length; i++) {
+            String buttonName = buttonText[i];
             buttons[i] = new Button(buttonText[i]);
             setButtonsSize(buttons[i]);
 
-            // ButtonEventHandler Class handles the events for each button
-            buttons[i].setOnAction(new ButtonEventHandler());
+            // Sets the handler for each button
+            buttons[i].setOnAction(event -> {
+                if (!(buttonName.equals("AC"))) { editCalculation(buttonName); }
+                else { clearCalculation(); }
+            });
 
             // new for HBox every 4 buttons
             if (i % 4 == 0) {
-                System.out.println(i);
                 row = new HBox(padding);
                 vbox.getChildren().add(row);
             }
@@ -109,14 +99,35 @@ public class Layout extends Application implements EventHandler<ActionEvent> {
         }
     }
 
+    /**
+     * Setups the calculationField in which the calculation is displayed
+     *
+     * @param root the parent BorderPane to position calculationField
+     */
     public void setupCalculationField(BorderPane root) {
-        calculationField.setMinHeight(100);
-        calculationField.setMaxHeight(150);
-        calculationField.setDisable(true);
+        calculationField.setMinSize(300, 100);
+        calculationField.setMaxSize(450, 150);
+        calculationField.setFont(new Font("Arial", 30));
+        calculationField.setAlignment(Pos.BASELINE_RIGHT);
+        calculationField.setWrapText(false);
+        //calculationField.setStyle("-fx-background-color: blue;");
         root.setTop(calculationField);
     }
 
-    public void addToCalculation(String element) {
+    /**
+     * Edits the calculationField
+     *
+     * @param element the value of the button that's pressed
+     */
+    public void editCalculation(String element) {
+        calculationField.setText(calculationField.getText() + element + " ");
+        System.out.println("CalculationField: " + calculationField.getText());
+    }
 
+    /**
+     * Clears the calculationField
+     */
+    private void clearCalculation() {
+        calculationField.setText("");
     }
 }

@@ -32,7 +32,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a00592f6-d182-4187-be9b-a80bb8020403" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/Layout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/hsworms/ztt/keidel/calculator/gui/MainWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,12 +83,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="Layout" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.hsworms.ztt.keidel.calculator.gui.Layout" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.hsworms.ztt.keidel.calculator.Main" />
       <module name="calculatorfpkws18_main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="de.hsworms.ztt.keidel.calculator.gui.*" />
+          <option name="PATTERN" value="de.hsworms.ztt.keidel.calculator.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -94,12 +96,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.hsworms.ztt.keidel.calculator.Main" />
+    <configuration name="MainWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.hsworms.ztt.keidel.calculator.gui.MainWindow" />
       <module name="calculatorfpkws18_main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="de.hsworms.ztt.keidel.calculator.*" />
+          <option name="PATTERN" value="de.hsworms.ztt.keidel.calculator.gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -147,7 +149,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Layout" />
+        <item itemvalue="Application.MainWindow" />
         <item itemvalue="Gradle.MainFuncTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.Tests in 'calculatorfpkws18_test'" />
@@ -200,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593877586548</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="code: adjusted spacing in calculationField">
+      <created>1593878529718</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1593878529718</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,7 +244,8 @@
     <MESSAGE value="code: adjusted the window, button and calculationField size" />
     <MESSAGE value="code: added EventHandler class for the buttons" />
     <MESSAGE value="code: reworked and implemented button handlers" />
-    <option name="LAST_COMMIT_MESSAGE" value="code: reworked and implemented button handlers" />
+    <MESSAGE value="code: adjusted spacing in calculationField" />
+    <option name="LAST_COMMIT_MESSAGE" value="code: adjusted spacing in calculationField" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" width="1156" height="761" key="#Project_Structure" timestamp="1593872629466">
@@ -250,50 +260,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="808" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593697860118" />
-    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1593877584449">
+    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1593959458710">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593877584449" />
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1593878470877">
+    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593959458710" />
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1593959379678">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593959379678" />
     <state width="1238" height="190" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590658347338" />
-    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1593878470877">
+    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1593959379678">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
+    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593959379678" />
     <state width="1238" height="190" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590658347333" />
-    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1593878470877">
+    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1593959379678">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
+    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593959379678" />
     <state width="1238" height="190" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590658347333" />
-    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1593878470877">
+    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1593959379678">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878470877" />
+    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593959379678" />
     <state width="1238" height="190" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590658347334" />
-    <state width="1877" height="217" key="GridCell.Tab.1.bottom" timestamp="1593874921083">
+    <state width="1877" height="217" key="GridCell.Tab.1.bottom" timestamp="1593901129048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="217" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593874921083" />
-    <state width="1877" height="217" key="GridCell.Tab.1.center" timestamp="1593874921082">
+    <state width="1877" height="217" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593901129048" />
+    <state width="1877" height="217" key="GridCell.Tab.1.center" timestamp="1593901129048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="217" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593874921082" />
-    <state width="1877" height="217" key="GridCell.Tab.1.left" timestamp="1593874921082">
+    <state width="1877" height="217" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593901129048" />
+    <state width="1877" height="217" key="GridCell.Tab.1.left" timestamp="1593901129048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="217" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593874921082" />
-    <state width="1877" height="217" key="GridCell.Tab.1.right" timestamp="1593874921083">
+    <state width="1877" height="217" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593901129048" />
+    <state width="1877" height="217" key="GridCell.Tab.1.right" timestamp="1593901129048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="217" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593874921083" />
-    <state x="360" y="171" key="Vcs.Push.Dialog.v2" timestamp="1593703530470">
+    <state width="1877" height="217" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593901129048" />
+    <state x="360" y="171" key="Vcs.Push.Dialog.v2" timestamp="1593878648324">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="360" y="171" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593703530470" />
+    <state x="360" y="171" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1593878648324" />
     <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1588829728460" />
     <state x="390" y="228" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1590657602315">
       <screen x="0" y="23" width="1280" height="777" />

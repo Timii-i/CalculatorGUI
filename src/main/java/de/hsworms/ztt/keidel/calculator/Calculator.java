@@ -13,9 +13,9 @@ import java.util.Stack;
  * <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">
  * Wikipedia: Reverse Polish notation (left-to-right algorithm)</a>
  */
-class Calculator {
+public class Calculator {
 
-    static double getResult(String infix) throws IOException {
+    public static double getResult(String infix) throws IOException {
         Stack<Token> tokenStack = new Stack<>();
         List<Token> tokenList = InfixToPostfixConverter.toPostfixListOfToken(infix);
         for (Token token : tokenList) {

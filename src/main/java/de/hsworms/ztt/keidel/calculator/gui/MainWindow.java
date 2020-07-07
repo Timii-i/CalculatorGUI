@@ -60,7 +60,7 @@ public class MainWindow extends Application{
 
         // Create a scene and add the root BorderPane to it with the window sizes of 320 x 470
         Scene scene = new Scene(root, 320, 470);
-        // Import the Roboto font to use
+        // Import the Roboto font from Google Web Fonts for us to use
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
         stage.setScene(scene);
         stage.setMinHeight(520);
@@ -167,8 +167,7 @@ public class MainWindow extends Application{
         label.setMaxSize(1920, 50);
         label.setAlignment(Pos.BASELINE_RIGHT);
         label.setWrapText(false);
-        System.out.println(javafx.scene.text.Font.getFamilies());
-        label.setStyle("-fx-background-color: #1c1e27 -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 15");
+        label.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 15");
         vbox.getChildren().add(label);
     }
 

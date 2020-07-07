@@ -16,8 +16,8 @@ import java.util.Stack;
 public class Calculator {
 
     public static double getResult(String infix) throws IOException {
-        Stack<Token> tokenStack = new Stack<>();
         List<Token> tokenList = InfixToPostfixConverter.toPostfixListOfToken(infix);
+        Stack<Token> tokenStack = new Stack<>();
         for (Token token : tokenList) {
             switch (token.getType()) {
                 case LITERAL:

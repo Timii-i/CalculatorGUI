@@ -17,7 +17,7 @@ import java.io.IOException;
 public class MainWindow extends Application{
 
     // Declaring constants
-    final int padding = 2;
+    final int padding = 3;
     final int buttonWidth = 75;
     final int buttonHeight = 75;
     final int minLabelHeight = 30;
@@ -60,11 +60,11 @@ public class MainWindow extends Application{
 
         // Create a scene and add the root BorderPane to it with the window sizes of 320 x 470
         Scene scene = new Scene(root, 320, 470);
+        stage.setMinHeight(520);
+        stage.setMinWidth(320);
         // Import the Roboto font from Google Web Fonts for us to use
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
         stage.setScene(scene);
-        stage.setMinHeight(520);
-        stage.setMinWidth(320);
         //stage.setResizable(false);
         stage.show();
     }
@@ -87,7 +87,6 @@ public class MainWindow extends Application{
             buttons[i] = new Button(buttonText[i]);
             setupButtons(buttons[i], stage);
             styleButtons(buttons[i]);
-            buttons[i].setEffect(new DropShadow());
 
             // Sets the handler for each button
             buttons[i].setOnAction(event -> {
@@ -135,10 +134,15 @@ public class MainWindow extends Application{
     }
 
     private void styleButtons(Button button) {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setOffsetX(1);
+        dropShadow.setOffsetY(1);
+        dropShadow.setWidth(10);
+        dropShadow.setHeight(10);
+        button.setEffect(dropShadow);
         button.setStyle("-fx-background-color: #2e303f; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 18pt; " +
-                "-fx-border-radius: 5px;" +
                 "-fx-font-family: Roboto;");
     }
 
@@ -152,7 +156,7 @@ public class MainWindow extends Application{
         resultLabel.setMaxSize(1920, 150);
         resultLabel.setAlignment(Pos.BASELINE_RIGHT);
         resultLabel.setWrapText(false);
-        resultLabel.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 60");
+        resultLabel.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 60; -fx-background-radius: 5px");
         vbox.getChildren().add(resultLabel);
     }
 
@@ -167,7 +171,7 @@ public class MainWindow extends Application{
         label.setMaxSize(1920, 50);
         label.setAlignment(Pos.BASELINE_RIGHT);
         label.setWrapText(false);
-        label.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 15");
+        label.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 15; -fx-background-radius: 5px");
         vbox.getChildren().add(label);
     }
 
@@ -220,6 +224,8 @@ public class MainWindow extends Application{
      * Clears the infixCalculation
      */
     private void clearCalculation() {
+        postfixLabel.setText("");
+        infixLabel.setText("");
         resultLabel.setText("");
     }
 }

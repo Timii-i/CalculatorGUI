@@ -4,6 +4,7 @@ import de.hsworms.ztt.keidel.calculator.Calculator;
 import de.hsworms.ztt.keidel.calculator.InfixToPostfixConverter;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,24 +12,31 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class MainWindow extends Application{
 
     // Declaring constants
-    final int padding = 3;
+    final int padding = 4;
     final int buttonWidth = 75;
     final int buttonHeight = 75;
     final int minLabelHeight = 30;
     final int minLabelWidth = 300;
 
-
+    BorderPane windowDecoration = new BorderPane();
+    HBox windowDecorationButtons = new HBox(padding);
+    Button closeButton = new Button("x");
+    Button minButton = new Button("_");
+    Label decorationLabel = new Label("Calculator");
     Label postfixLabel = new Label();
     Label infixLabel = new Label();
     Label resultLabel = new Label();
     BorderPane root = new BorderPane();
     VBox vbox = new VBox(padding);
+    double xCoord;
+    double yCoord;
 
     /**
      * Start a given stage (Entry point for the application)
@@ -38,10 +46,15 @@ public class MainWindow extends Application{
      */
     @Override
     public void start(Stage stage) throws Exception {
+        root.setPadding(new Insets(5 ));
+        root.setStyle("-fx-background-radius: 10px");
 
         // Center the VBox in the BorderPane
         vbox.setAlignment(Pos.CENTER);
         vbox.setStyle("-fx-background-color: #383b49");
+
+        // Creates a custom Window Decoration
+        setupWindowDecoration(vbox, stage);
 
         // Setup the postfixLabel, infixLabel and resultLabel in the Top of the window
         setupCalculationLabels(vbox, postfixLabel);
@@ -49,24 +62,79 @@ public class MainWindow extends Application{
         setupResultLabel(vbox);
 
         // Setup all the buttons needed for the calculator
-        setupButtons(vbox, stage);
+        setupButtonSize(vbox, stage);
 
         // Centers the VBox in the BorderPane
         root.setCenter(vbox);
+        root.setStyle("-fx-background-color: #383b49");
 
         // Scale the BorderPane with the window size
         //root.prefWidthProperty().bind(stage.widthProperty());
         //root.prefHeightProperty().bind(stage.heightProperty());
 
-        // Create a scene and add the root BorderPane to it with the window sizes of 320 x 470
+        // Create a scene with the size of 320 x 470
         Scene scene = new Scene(root, 320, 470);
-        stage.setMinHeight(520);
-        stage.setMinWidth(320);
         // Import the Roboto font from Google Web Fonts for us to use
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        stage.setMinHeight(520);
+        stage.setMinWidth(320);
         stage.setScene(scene);
         //stage.setResizable(false);
         stage.show();
+    }
+
+    /**
+     * Creates and setups a custom Window Decoration with close and minimize buttons
+     *
+     * @param vbox the parent VBox in which the HBox is placed
+     */
+    private void setupWindowDecoration(VBox vbox, Stage stage) {
+
+        // Add handler for minButton to minimize on click
+        styleWindowButtons(minButton);
+        minButton.setOnAction(event -> stage.setIconified(true));
+
+        // Add handler for closeButton to close the window on click
+        styleWindowButtons(closeButton);
+        closeButton.setOnAction(event -> stage.close());
+
+        // Add handler for the whole windowDecoration to get the x and y coordinates on click
+        windowDecoration.setOnMousePressed(event -> {
+            xCoord = event.getSceneX();
+            yCoord = event.getSceneY();
+        });
+
+        // Add handler for the whole windowDecoration to set the scene to the new x and y coordinates on mouse drag
+        windowDecoration.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xCoord);
+            stage.setY(event.getScreenY() - yCoord);
+        });
+
+        decorationLabel.setStyle("-fx-text-fill: #c2c1c2");
+        windowDecorationButtons.getChildren().addAll(minButton, closeButton);
+
+        windowDecoration.setCenter(decorationLabel);
+        windowDecoration.setRight(windowDecorationButtons);
+
+        windowDecoration.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-font-family: Roboto; -fx-font-size: 15; -fx-background-radius: 5px");
+        BorderPane.setMargin(decorationLabel, new Insets(0, -55, 0 , 0));
+        vbox.getChildren().add(windowDecoration);
+    }
+
+    /**
+     * Adds DropShadow and Css Styling to each window button
+     *
+     * @param button the button that is styled
+     */
+    private void styleWindowButtons(Button button) {
+        button.setStyle("-fx-background-color: #2e303f; " +
+                "-fx-text-fill: white; " +
+                "-fx-font-size: 10pt; " +
+                "-fx-font-family: Roboto;" +
+                "-fx-background-radius: 5px;");
     }
 
     /**
@@ -74,7 +142,7 @@ public class MainWindow extends Application{
      *
      * @param vbox the columns in which the hboxes are placed
      */
-    public void setupButtons(VBox vbox, Stage stage) {
+    public void setupButtonSize(VBox vbox, Stage stage) {
         HBox row = null;
         // Array for the Button texts
         String[] buttonText = {"AC","(",")","%","7","8","9","/","4","5","6","*","1","2","3","-","0","=","+"};
@@ -85,7 +153,7 @@ public class MainWindow extends Application{
         for (int i = 0; i < buttonText.length; i++) {
             String buttonName = buttonText[i];
             buttons[i] = new Button(buttonText[i]);
-            setupButtons(buttons[i], stage);
+            setupButtonSize(buttons[i], stage);
             styleButtons(buttons[i]);
 
             // Sets the handler for each button
@@ -112,7 +180,9 @@ public class MainWindow extends Application{
      *
      * @param button the button that should be adjusted in size
      */
-    public void setupButtons(Button button, Stage stage) {
+    public void setupButtonSize(Button button, Stage stage) {
+        //FIXME Scaling of the "0" Button
+
         // Makes the "0" button double the width
         if (button.getText().equals("0")) {
             /*button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -133,6 +203,11 @@ public class MainWindow extends Application{
         }
     }
 
+    /**
+     * Adds DropShadow and Css Styling to each button
+     *
+     * @param button the button that is styled
+     */
     private void styleButtons(Button button) {
         DropShadow dropShadow = new DropShadow();
         dropShadow.setOffsetX(1);
@@ -143,7 +218,8 @@ public class MainWindow extends Application{
         button.setStyle("-fx-background-color: #2e303f; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 18pt; " +
-                "-fx-font-family: Roboto;");
+                "-fx-font-family: Roboto;" +
+                "-fx-background-radius: 5px");
     }
 
     /**

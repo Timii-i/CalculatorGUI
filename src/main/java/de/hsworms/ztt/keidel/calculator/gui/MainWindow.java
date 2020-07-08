@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -46,12 +47,11 @@ public class MainWindow extends Application{
      */
     @Override
     public void start(Stage stage) throws Exception {
-        root.setPadding(new Insets(5 ));
-        root.setStyle("-fx-background-radius: 10px");
 
         // Center the VBox in the BorderPane
         vbox.setAlignment(Pos.CENTER);
-        vbox.setStyle("-fx-background-color: #383b49");
+        vbox.setPadding(new Insets(5));
+        vbox.setStyle("-fx-background-radius: 10px; -fx-background-color: #383b49; -fx-border-radius: 10px; -fx-border-color: white");
 
         // Creates a custom Window Decoration
         setupWindowDecoration(vbox, stage);
@@ -66,14 +66,14 @@ public class MainWindow extends Application{
 
         // Centers the VBox in the BorderPane
         root.setCenter(vbox);
-        root.setStyle("-fx-background-color: #383b49");
+        root.setStyle("-fx-background-color: transparent");
 
         // Scale the BorderPane with the window size
         //root.prefWidthProperty().bind(stage.widthProperty());
         //root.prefHeightProperty().bind(stage.heightProperty());
 
-        // Create a scene with the size of 320 x 470
-        Scene scene = new Scene(root, 320, 470);
+        // Create a scene with the size of 320 x 470 and a transparent background
+        Scene scene = new Scene(root, 320, 470, Color.TRANSPARENT);
         // Import the Roboto font from Google Web Fonts for us to use
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 

@@ -2,6 +2,8 @@ package de.hsworms.ztt.keidel.calculator.gui;
 
 import de.hsworms.ztt.keidel.calculator.Calculator;
 import de.hsworms.ztt.keidel.calculator.InfixToPostfixConverter;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
@@ -10,11 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class MainWindow extends Application{
@@ -27,9 +32,9 @@ public class MainWindow extends Application{
     final int minLabelWidth = 300;
 
     BorderPane windowDecoration = new BorderPane();
-    HBox windowDecorationButtons = new HBox(padding);
-    Button closeButton = new Button("x");
-    Button minButton = new Button("_");
+    HBox windowDecorationButtons = new HBox();
+    Button closeButton = new Button("");
+    Button minButton = new Button("");
     Label decorationLabel = new Label("Calculator");
     Label postfixLabel = new Label();
     Label infixLabel = new Label();
@@ -49,7 +54,7 @@ public class MainWindow extends Application{
     public void start(Stage stage) throws Exception {
 
         // Center the VBox in the BorderPane
-        vbox.setAlignment(Pos.CENTER);
+        vbox.setAlignment(Pos.CENTER_RIGHT);
         vbox.setPadding(new Insets(5));
         vbox.setStyle("-fx-background-radius: 10px; -fx-background-color: #383b49; -fx-border-radius: 10px; -fx-border-color: white");
 
@@ -62,7 +67,7 @@ public class MainWindow extends Application{
         setupResultLabel(vbox);
 
         // Setup all the buttons needed for the calculator
-        setupButtonSize(vbox, stage);
+        setupButton(vbox, stage);
 
         // Centers the VBox in the BorderPane
         root.setCenter(vbox);
@@ -96,10 +101,26 @@ public class MainWindow extends Application{
         // Add handler for minButton to minimize on click
         styleWindowButtons(minButton);
         minButton.setOnAction(event -> stage.setIconified(true));
+        minButton.setOnMouseEntered(event -> minButton.setStyle("-fx-background-color: #2e303f"));
+        minButton.setOnMouseExited(event -> minButton.setStyle("-fx-background-color: #1c1e27"));
+
+        // Load the minus Icon from the FontAwesomeFX Library
+        FontAwesomeIconView minImageView = new FontAwesomeIconView(FontAwesomeIcon.MINUS);
+        minImageView.setSize(".8em");
+        minImageView.setFill(Color.WHITE);
+        minButton.setGraphic(minImageView);
 
         // Add handler for closeButton to close the window on click
         styleWindowButtons(closeButton);
         closeButton.setOnAction(event -> stage.close());
+        closeButton.setOnMouseEntered(event -> closeButton.setStyle("-fx-background-color: #2e303f"));
+        closeButton.setOnMouseExited(event -> closeButton.setStyle("-fx-background-color: #1c1e27"));
+
+        // Load the minus Icon from the FontAwesomeFX Library
+        FontAwesomeIconView closeImageView = new FontAwesomeIconView(FontAwesomeIcon.CLOSE);
+        closeImageView.setSize(".8em");
+        closeImageView.setFill(Color.WHITE);
+        closeButton.setGraphic(closeImageView);
 
         // Add handler for the whole windowDecoration to get the x and y coordinates on click
         windowDecoration.setOnMousePressed(event -> {
@@ -130,11 +151,9 @@ public class MainWindow extends Application{
      * @param button the button that is styled
      */
     private void styleWindowButtons(Button button) {
-        button.setStyle("-fx-background-color: #2e303f; " +
+        button.setStyle("-fx-background-color: #1c1e27; " +
                 "-fx-text-fill: white; " +
-                "-fx-font-size: 10pt; " +
-                "-fx-font-family: Roboto;" +
-                "-fx-background-radius: 5px;");
+                "-fx-font-family: Roboto;");
     }
 
     /**
@@ -142,7 +161,7 @@ public class MainWindow extends Application{
      *
      * @param vbox the columns in which the hboxes are placed
      */
-    public void setupButtonSize(VBox vbox, Stage stage) {
+    public void setupButton(VBox vbox, Stage stage) {
         HBox row = null;
         // Array for the Button texts
         String[] buttonText = {"AC","(",")","%","7","8","9","/","4","5","6","*","1","2","3","-","0","=","+"};
@@ -155,6 +174,7 @@ public class MainWindow extends Application{
             buttons[i] = new Button(buttonText[i]);
             setupButtonSize(buttons[i], stage);
             styleButtons(buttons[i]);
+            setButtonHover(buttons[i]);
 
             // Sets the handler for each button
             buttons[i].setOnAction(event -> {
@@ -173,6 +193,30 @@ public class MainWindow extends Application{
             //VBox.setVgrow(row, Priority.ALWAYS);
             //buttons[i].setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         }
+    }
+
+    /**
+     * Adds a hover effect for a given button
+     *
+     * @param button the button for which a hover effect should be added
+     */
+    public void setButtonHover(Button button) {
+        button.setOnMouseEntered(event -> styleButtonsHover(button));
+        button.setOnMouseExited(event -> styleButtons(button));
+    }
+
+    private void styleButtonsHover(Button button) {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setOffsetX(1);
+        dropShadow.setOffsetY(1);
+        dropShadow.setWidth(10);
+        dropShadow.setHeight(10);
+        button.setEffect(dropShadow);
+        button.setStyle("-fx-background-color: #36384a; " +
+                "-fx-text-fill: white; " +
+                "-fx-font-size: 18pt; " +
+                "-fx-font-family: Roboto;" +
+                "-fx-background-radius: 5px");
     }
 
     /**

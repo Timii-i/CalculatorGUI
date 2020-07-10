@@ -5,6 +5,7 @@ import de.hsworms.ztt.keidel.calculator.InfixToPostfixConverter;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -26,6 +29,9 @@ public class MainWindow extends Application{
     final int buttonHeight = 75;
     final int minLabelHeight = 30;
     final int minLabelWidth = 300;
+    double xCoord;
+    double yCoord;
+    int fontSize = 60;
 
     BorderPane windowDecoration = new BorderPane();
     HBox windowDecorationButtons = new HBox();
@@ -37,8 +43,6 @@ public class MainWindow extends Application{
     Label resultLabel = new Label();
     BorderPane root = new BorderPane();
     VBox vbox = new VBox(padding);
-    double xCoord;
-    double yCoord;
 
     /**
      * Start a given stage (Entry point for the application)
@@ -52,7 +56,10 @@ public class MainWindow extends Application{
         // Center the VBox in the BorderPane
         vbox.setAlignment(Pos.CENTER_RIGHT);
         vbox.setPadding(new Insets(5));
-        vbox.setStyle("-fx-background-radius: 10px; -fx-background-color: #383b49; -fx-border-radius: 10px; -fx-border-color: white");
+        vbox.setStyle("-fx-background-radius: 10px; " +
+                "-fx-background-color: #383b49; " +
+                "-fx-border-radius: 10px; " +
+                "-fx-border-color: white");
 
         // Creates a custom Window Decoration
         setupWindowDecoration(vbox, stage);
@@ -145,7 +152,11 @@ public class MainWindow extends Application{
         windowDecoration.setCenter(decorationLabel);
         windowDecoration.setRight(windowDecorationButtons);
 
-        windowDecoration.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-font-family: Roboto; -fx-font-size: 15; -fx-background-radius: 5px");
+        windowDecoration.setStyle("-fx-background-color: #1c1e27; " +
+                "-fx-text-fill: white; " +
+                "-fx-font-family: Roboto; " +
+                "-fx-font-size: 15; " +
+                "-fx-background-radius: 5px");
         BorderPane.setMargin(decorationLabel, new Insets(0, -55, 0 , 0));
         BorderPane.setMargin(windowDecorationButtons, new Insets(0, 0, 1, 0));
         vbox.getChildren().add(windowDecoration);
@@ -278,12 +289,47 @@ public class MainWindow extends Application{
      * @param vbox the parent VBox to position resultLabel
      */
     public void setupResultLabel(VBox vbox) {
+
         resultLabel.setMinSize(300, 100);
         resultLabel.setMaxSize(1920, 150);
+
+        // Add a text listener to check if the font size needs to be scaled down
+        resultLabel.textProperty().addListener((observable, oldValue, newValue) -> scaleDownFont(resultLabel));
+
         resultLabel.setAlignment(Pos.BASELINE_RIGHT);
         resultLabel.setWrapText(false);
-        resultLabel.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 60; -fx-background-radius: 5px");
+        resultLabel.setStyle("-fx-background-color: #1c1e27; " +
+                "-fx-text-fill: white; " +
+                "-fx-padding: 0 10 0 0; " +
+                "-fx-font-family: Roboto; " +
+                "-fx-background-radius: 5px; " +
+                "-fx-font-size: 60px");
         vbox.getChildren().add(resultLabel);
+    }
+
+    /**
+     * Function to check if the font size needs to be scaled down or not. If yes scale down the font size
+     *
+     * @param resultLabel the label in which the text needs to be scaled down
+     */
+    private void scaleDownFont(Label resultLabel) {
+        Platform.runLater(() -> {
+            // Changes the string of the calculation to a Text object to get the width if the text
+            Text resultText = new Text(resultLabel.getText());
+            resultText.setFont(Font.font(fontSize));
+
+            // Checks if the width of the text is bigger than the width of the label
+            if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 20 && fontSize > 10) {
+                System.out.println(fontSize);
+                fontSize /= 1.3;
+                resultLabel.setStyle("-fx-background-color: #1c1e27; " +
+                        "-fx-text-fill: white; " +
+                        "-fx-padding: 0 10 0 0; " +
+                        "-fx-font-family: Roboto; " +
+                        "-fx-background-radius: 5px; " +
+                        "-fx-font-size: " + fontSize + "px");
+            }
+        });
     }
 
     /**
@@ -297,7 +343,12 @@ public class MainWindow extends Application{
         label.setMaxSize(1920, 50);
         label.setAlignment(Pos.BASELINE_RIGHT);
         label.setWrapText(false);
-        label.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-padding: 0 10 0 0; -fx-font-family: Roboto; -fx-font-size: 15; -fx-background-radius: 5px");
+        label.setStyle("-fx-background-color: #1c1e27; " +
+                "-fx-text-fill: white; " +
+                "-fx-padding: 0 10 0 0; " +
+                "-fx-font-family: Roboto; " +
+                "-fx-font-size: 15; " +
+                "-fx-background-radius: 5px");
         vbox.getChildren().add(label);
     }
 
@@ -316,10 +367,16 @@ public class MainWindow extends Application{
             case "%":
             case "(":
                 resultLabel.setText(calculation + " " + element + " ");
+
+                // Scale down the text size if the calculation is too long
+                /*if (resultLabel.getText().length() % 6 == 0) {
+                    fontSize /= 2;
+                    resultLabel.setFont(Font.font(fontSize));
+                }*/
                 break;
 
             case ")":
-                // if there hasn't been a opening bracket add a opening bracket and the other way around
+                // if there hasn't been a opening bracket add a opening bracket else add a closing bracket
                 if (calculation.indexOf('(') != -1) {
                     resultLabel.setText(calculation + " ) ");
                 }
@@ -334,6 +391,7 @@ public class MainWindow extends Application{
                     infixLabel.setText((calculation));
                     // Show the result of the calculation in resultLabel
                     resultLabel.setText(Double.toString(result));
+
                 }
                 catch (IOException e) {
                     e.printStackTrace();
@@ -342,6 +400,7 @@ public class MainWindow extends Application{
 
             default:
                 resultLabel.setText(calculation + element);
+
         }
         System.out.println("infixCalculation: " + resultLabel.getText());
     }

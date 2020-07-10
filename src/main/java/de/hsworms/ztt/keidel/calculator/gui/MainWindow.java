@@ -12,14 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class MainWindow extends Application{
@@ -97,6 +93,13 @@ public class MainWindow extends Application{
      * @param vbox the parent VBox in which the HBox is placed
      */
     private void setupWindowDecoration(VBox vbox, Stage stage) {
+        // Load the calculator icon from the FontAwesomeFX Library
+        FontAwesomeIconView calcIcon = new FontAwesomeIconView(FontAwesomeIcon.CALCULATOR);
+        calcIcon.setSize("1.3em");
+        calcIcon.setFill(Color.WHITE);
+        // Put the calculator icon in the center
+        calcIcon.setTranslateX(10);
+        calcIcon.setTranslateY(7);
 
         // Add handler for minButton to minimize on click
         styleWindowButtons(minButton);
@@ -134,14 +137,17 @@ public class MainWindow extends Application{
             stage.setY(event.getScreenY() - yCoord);
         });
 
-        decorationLabel.setStyle("-fx-text-fill: #c2c1c2");
+        decorationLabel.setStyle("-fx-text-fill: white");
         windowDecorationButtons.getChildren().addAll(minButton, closeButton);
 
+        // Set the positions of each element in the BorderPane
+        windowDecoration.setLeft(calcIcon);
         windowDecoration.setCenter(decorationLabel);
         windowDecoration.setRight(windowDecorationButtons);
 
         windowDecoration.setStyle("-fx-background-color: #1c1e27; -fx-text-fill: white; -fx-font-family: Roboto; -fx-font-size: 15; -fx-background-radius: 5px");
         BorderPane.setMargin(decorationLabel, new Insets(0, -55, 0 , 0));
+        BorderPane.setMargin(windowDecorationButtons, new Insets(0, 0, 1, 0));
         vbox.getChildren().add(windowDecoration);
     }
 

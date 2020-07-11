@@ -1,10 +1,9 @@
 package de.hsworms.ztt.keidel.calculator;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 // imports for javafx
-import de.hsworms.ztt.keidel.calculator.gui.MainWindow;
+import de.hsworms.ztt.keidel.calculator.gui.MainLayout;
 import static javafx.application.Application.launch;
 
 public class Main {
@@ -12,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Launches the main window class application
-        launch(MainWindow.class, args);
+        launch(MainLayout.class, args);
 
         /*while(true) {
             System.out.println("Please type an infix mathematical expression:");

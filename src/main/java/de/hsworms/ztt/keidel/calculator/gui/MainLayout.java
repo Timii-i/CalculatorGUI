@@ -1,13 +1,9 @@
 package de.hsworms.ztt.keidel.calculator.gui;
 
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -27,18 +23,12 @@ public class MainLayout extends Application{
      * Start the main stage (Entry point for the application)
      *
      * @param stage the stage that should be started
-     * @throws Exception
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
-        // Center the VBox in the BorderPane
-        vbox.setAlignment(Pos.CENTER_RIGHT);
-        vbox.setPadding(new Insets(5));
-        vbox.setStyle("-fx-background-radius: 10px; " +
-                "-fx-background-color: #383b49; " +
-                "-fx-border-radius: 10px; " +
-                "-fx-border-color: white");
+        // Center the VBox in the BorderPane and style it
+        styleVBox();
 
         // Creates a custom Window Decoration
         WindowDecoration windowDecoration = new WindowDecoration();
@@ -63,11 +53,22 @@ public class MainLayout extends Application{
         // Import the Roboto font from Google Web Fonts for us to use
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
+        // Hide the standard windowDecoration
         stage.initStyle(StageStyle.TRANSPARENT);
 
-        stage.setMinHeight(520);
-        stage.setMinWidth(320);
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * Centers the VBox in the BorderPane and styles it
+     */
+    private void styleVBox() {
+        vbox.setAlignment(Pos.CENTER_RIGHT);
+        vbox.setPadding(new Insets(5));
+        vbox.setStyle("-fx-background-radius: 10px; " +
+                "-fx-background-color: #383b49; " +
+                "-fx-border-radius: 10px; " +
+                "-fx-border-color: white");
     }
 }

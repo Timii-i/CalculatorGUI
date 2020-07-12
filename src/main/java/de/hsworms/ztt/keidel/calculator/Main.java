@@ -1,13 +1,19 @@
 package de.hsworms.ztt.keidel.calculator;
 
 import java.io.IOException;
-import java.util.Scanner;
+
+// imports for javafx
+import de.hsworms.ztt.keidel.calculator.gui.MainLayout;
+import static javafx.application.Application.launch;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        while(true) {
+        // Launches the main window class application
+        launch(MainLayout.class, args);
+
+        /*while(true) {
             System.out.println("Please type an infix mathematical expression:");
             Scanner scanner = new Scanner(System.in);
             String infix = scanner.nextLine();
@@ -17,7 +23,7 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     public static double getCalculatorResult(String infix) throws IOException {

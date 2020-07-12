@@ -13,11 +13,11 @@ import java.util.Stack;
  * <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">
  * Wikipedia: Reverse Polish notation (left-to-right algorithm)</a>
  */
-class Calculator {
+public class Calculator {
 
-    static double getResult(String infix) throws IOException {
-        Stack<Token> tokenStack = new Stack<>();
+    public static double getResult(String infix) throws IOException {
         List<Token> tokenList = InfixToPostfixConverter.toPostfixListOfToken(infix);
+        Stack<Token> tokenStack = new Stack<>();
         for (Token token : tokenList) {
             switch (token.getType()) {
                 case LITERAL:

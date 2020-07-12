@@ -15,7 +15,7 @@ public class InfixToPostfixConverter {
         return (Token.ops.containsKey(sub) && Token.ops.get(sub).precedence >= Token.ops.get(op).precedence);
     }
 
-    static String toPostfix(String infix) {
+    public static String toPostfix(String infix) {
         StringBuilder output = new StringBuilder();
         Deque<String> stack = new LinkedList<>();
 

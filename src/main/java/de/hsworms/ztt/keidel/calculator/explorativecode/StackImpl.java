@@ -1,4 +1,4 @@
-package de.hsworms.ztt.keidel.calculator;
+package de.hsworms.ztt.keidel.calculator.explorativecode;
 
 import java.util.EmptyStackException;
 import java.util.Stack;

@@ -34,5 +34,13 @@ public class CalculatorTest {
         assertEquals(0., Calculator.getResult("(1 + 1) % 2"), DELTA);
         assertEquals(0., Calculator.getResult("(1 + 1) % (1 + 1)"), DELTA);
         assertEquals(0., Calculator.getResult("(1023 + 1) % (1 + 1)"), DELTA);
+
+        // Exponent tests
+        assertEquals(1., Calculator.getResult("2 ^ 0"), DELTA);
+        assertEquals(2., Calculator.getResult("2 ^ 1"), DELTA);
+        assertEquals(0., Calculator.getResult("0 ^ 2"), DELTA);
+        assertEquals(243., Calculator.getResult("3 ^ 5"), DELTA);
+        assertEquals(288., Calculator.getResult("(2 ^ 5) * (3 ^ 2)"), DELTA);
+        assertEquals(16807., Calculator.getResult("(2 + 5) ^ (3 + 2)"), DELTA);
     }
 }

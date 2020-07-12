@@ -42,6 +42,9 @@ public class Calculator {
                         case MODULO:
                             tokenStack.push(new Token(String.valueOf(operandA % operandB)));
                             break;
+                        case EXPONENT:
+                            tokenStack.push(new Token(String.valueOf(Math.pow(operandA, operandB))));
+                            break;
                         default:
                             throw new IllegalStateException("Programing Error! Implement: " + token.getOperator());
                     }

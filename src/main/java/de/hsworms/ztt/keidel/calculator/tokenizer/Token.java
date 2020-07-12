@@ -18,7 +18,7 @@ public class Token {
      * https://en.wikipedia.org/wiki/Order_of_operations</a>
      */
     public enum Operator {
-        ADD(1), SUBTRACT(1), MULTIPLY(2), DIVIDE(2), MODULO(2);
+        ADD(1), SUBTRACT(1), MULTIPLY(2), DIVIDE(2), MODULO(2), EXPONENT(2);
         public final int precedence;
 
         Operator(int p) {
@@ -32,6 +32,7 @@ public class Token {
         put("*", Token.Operator.MULTIPLY);
         put("/", Token.Operator.DIVIDE);
         put("%", Operator.MODULO);
+        put("^", Operator.EXPONENT);
     }};
 
     private Type type = Type.NOT_DETERMINED;
@@ -49,7 +50,7 @@ public class Token {
             type = Type.LEFT_BRACKET;
         } else if (value.equalsIgnoreCase(")")) {
             type = Type.RIGHT_BRACKET;
-        } else if (value.matches("[-+*/%]")) {
+        } else if (value.matches("[-+*/%^]")) {
             type = Type.OPERATOR;
             operator = ops.get(value);
         } else if (value.matches("-?[0-9.]+")) {

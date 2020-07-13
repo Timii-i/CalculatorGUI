@@ -71,5 +71,14 @@ public class CalculatorTest {
         assertEquals(-0.14254654307, Calculator.getResult("tan (3)"), DELTA);
         assertEquals(0.87144798272, Calculator.getResult("tan (3 + 4)"), DELTA);
         assertEquals(1.58815308339, Calculator.getResult("tan (3 + 4 * 5)"), DELTA);
+
+        // sqrt (Square root) tests
+        assertEquals(0., Calculator.getResult("sqrt (0)"), DELTA);
+        assertEquals(0., Calculator.getResult("sqrt (   0   )"), DELTA);
+        assertEquals(1., Calculator.getResult("sqrt (1)"), DELTA);
+        assertEquals(1.41421356237, Calculator.getResult("sqrt (2)"), DELTA);
+        assertEquals(1.73205080757, Calculator.getResult("sqrt (3)"), DELTA);
+        assertEquals(3.87298334621, Calculator.getResult("sqrt (3 * 5)"), DELTA);
+        assertEquals(4.05144586072, Calculator.getResult("sqrt (3 * 5 + sqrt (2))"), DELTA);
     }
 }

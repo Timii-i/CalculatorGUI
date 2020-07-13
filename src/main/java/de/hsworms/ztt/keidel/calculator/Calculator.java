@@ -59,6 +59,9 @@ public class Calculator {
                         case TAN:
                             tokenStack.push(new Token(String.valueOf(Math.tan(operand))));
                             break;
+                        case SQRT:
+                            tokenStack.push(new Token(String.valueOf(Math.sqrt(operand))));
+                            break;
                         default:
                             throw new IllegalStateException("Programing Error! Implement Function: " + token.getFunction());
                     }

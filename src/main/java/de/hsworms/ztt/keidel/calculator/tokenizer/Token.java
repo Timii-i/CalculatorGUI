@@ -25,7 +25,7 @@ public class Token {
     }
 
     public enum Function {
-        SIN(4);
+        SIN(4), COS(4), TAN(4);
         public final int precedence;
 
         Function(int p) { precedence = p; }
@@ -42,6 +42,8 @@ public class Token {
 
     public static Map<String, Token.Function> funcs = new HashMap<String, Function>() {{
        put("sin", Function.SIN);
+       put("cos", Function.COS);
+       put("tan", Function.TAN);
     }};
 
     private Type type = Type.NOT_DETERMINED;
@@ -65,7 +67,7 @@ public class Token {
         } else if (value.matches("[-+*/%^]")) {
             type = Type.OPERATOR;
             operator = ops.get(value);
-        } else if (value.matches("(sin)")) {
+        } else if (value.matches("(sin|cos|tan)")) {
             type = Type.FUNCTION;
             function = funcs.get(value);
         } else {

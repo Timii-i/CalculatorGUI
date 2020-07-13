@@ -53,6 +53,12 @@ public class Calculator {
                         case SIN:
                             tokenStack.push(new Token(String.valueOf(Math.sin(operand))));
                             break;
+                        case COS:
+                            tokenStack.push(new Token(String.valueOf(Math.cos(operand))));
+                            break;
+                        case TAN:
+                            tokenStack.push(new Token(String.valueOf(Math.tan(operand))));
+                            break;
                         default:
                             throw new IllegalStateException("Programing Error! Implement Function: " + token.getFunction());
                     }

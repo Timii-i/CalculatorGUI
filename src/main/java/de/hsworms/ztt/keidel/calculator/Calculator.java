@@ -1,8 +1,6 @@
 package de.hsworms.ztt.keidel.calculator;
 
-import de.hsworms.ztt.keidel.calculator.InfixToPostfixConverter;
 import de.hsworms.ztt.keidel.calculator.tokenizer.Token;
-import de.hsworms.ztt.keidel.calculator.tokenizer.TokenizerUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,8 +22,8 @@ public class Calculator {
                     tokenStack.push(token);
                     break;
                 case OPERATOR:
-                    double operandB = Double.valueOf(tokenStack.pop().getValue());
-                    double operandA = Double.valueOf(tokenStack.pop().getValue());
+                    double operandB = Double.parseDouble(tokenStack.pop().getValue());
+                    double operandA = Double.parseDouble(tokenStack.pop().getValue());
                     switch (token.getOperator()) {
                         case ADD:
                             tokenStack.push(new Token(String.valueOf(operandA + operandB)));
@@ -49,10 +47,20 @@ public class Calculator {
                             throw new IllegalStateException("Programing Error! Implement: " + token.getOperator());
                     }
                     break;
+                case FUNCTION:
+                    double operand = Double.parseDouble(tokenStack.pop().getValue());
+                    switch (token.getFunction()) {
+                        case SIN:
+                            tokenStack.push(new Token(String.valueOf(Math.sin(operand))));
+                            break;
+                        default:
+                            throw new IllegalStateException("Programing Error! Implement Function: " + token.getFunction());
+                    }
+                    break;
                 default:
                     throw new IllegalStateException("Programing Error! Implement: " + token.getType());
             }
         }
-        return Double.valueOf(tokenStack.pop().getValue());
+        return Double.parseDouble(tokenStack.pop().getValue());
     }
 }

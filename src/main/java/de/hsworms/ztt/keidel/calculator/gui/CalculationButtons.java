@@ -108,7 +108,7 @@ public class CalculationButtons {
     public void clearCalculation() {
         calculationLabels.setPostfixLabel("");
         calculationLabels.setInfixLabel("");
-        calculationLabels.setPostfixLabel("");
+        calculationLabels.setResultLabel("");
     }
 
     /**

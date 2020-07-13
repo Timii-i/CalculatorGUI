@@ -25,6 +25,7 @@ public class CalculatorTest {
         assertEquals(3.0, Calculator.getResult("1 + 1 * 2"), DELTA);
         assertEquals(2.0, Calculator.getResult("1 + 1 * 2 / 2"), DELTA);
         assertEquals(3.0, Calculator.getResult("1 + 1 * 2 / 2 + 1"), DELTA);
+        assertEquals(8.871, Calculator.getResult("1.581 + 7.29"), DELTA);
 
         // Praktikum task: Modulo
         assertEquals(0., Calculator.getResult("2 % 2"), DELTA);
@@ -42,5 +43,33 @@ public class CalculatorTest {
         assertEquals(243., Calculator.getResult("3 ^ 5"), DELTA);
         assertEquals(288., Calculator.getResult("(2 ^ 5) * (3 ^ 2)"), DELTA);
         assertEquals(16807., Calculator.getResult("(2 + 5) ^ (3 + 2)"), DELTA);
+
+        // sin (Sine) tests
+        assertEquals(0., Calculator.getResult("sin ( 0 )"), DELTA);
+        assertEquals(0., Calculator.getResult("sin (0)"), DELTA);
+        assertEquals(0., Calculator.getResult("sin (0  )"), DELTA);
+        assertEquals(0.8414709848, Calculator.getResult("sin (1)"), DELTA);
+        assertEquals(0.90929742682, Calculator.getResult("sin (2)"), DELTA);
+        assertEquals(0.14112000806, Calculator.getResult("sin (3)"), DELTA);
+        assertEquals(-0.54402111088, Calculator.getResult("sin (3 + 7)"), DELTA);
+        assertEquals(0.98935824662, Calculator.getResult("sin (2 * 4)"), DELTA);
+
+        // cos (Cosine) tests
+        assertEquals(1., Calculator.getResult("cos ( 0 )"), DELTA);
+        assertEquals(1., Calculator.getResult("cos (0)"), DELTA);
+        assertEquals(0.54030230586, Calculator.getResult("cos (1)"), DELTA);
+        assertEquals(-0.41614683654, Calculator.getResult("cos (2)"), DELTA);
+        assertEquals(-0.9899924966, Calculator.getResult("cos (3)"), DELTA);
+        assertEquals(0.28366218546, Calculator.getResult("cos (3 + 2)"), DELTA);
+        assertEquals(0.1367372182, Calculator.getResult("cos (4 * 3 + 2)"), DELTA);
+
+        // tan (Tangent) tests
+        assertEquals(0., Calculator.getResult("tan (0    )"), DELTA);
+        assertEquals(0., Calculator.getResult("tan (0)"), DELTA);
+        assertEquals(1.55740772465, Calculator.getResult("tan (1)"), DELTA);
+        assertEquals(-2.18503986326, Calculator.getResult("tan (2)"), DELTA);
+        assertEquals(-0.14254654307, Calculator.getResult("tan (3)"), DELTA);
+        assertEquals(0.87144798272, Calculator.getResult("tan (3 + 4)"), DELTA);
+        assertEquals(1.58815308339, Calculator.getResult("tan (3 + 4 * 5)"), DELTA);
     }
 }

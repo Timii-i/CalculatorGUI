@@ -28,8 +28,8 @@ public class CalculationButtons {
      */
     public void setupCalculatorButtons(VBox vbox, Stage stage) {
         HBox row = null;
-        // Array for the Button texts
-        String[] buttonText = {"AC","(",")","%","7","8","9","/","4","5","6","*","1","2","3","-","0","=","+"};
+        // Array for the Button texts (\u221A is the Unicode for the square root icon)
+        String[] buttonText = {"AC","(",")","%","^","7","8","9","/","\u221A","4","5","6","*","sin()","1","2","3","-","cos()","0","=","+","tan()"};
         // Array for each button
         Button[] buttons = new Button[buttonText.length];
 
@@ -37,7 +37,7 @@ public class CalculationButtons {
         for (int i = 0; i < buttonText.length; i++) {
             String buttonName = buttonText[i];
             buttons[i] = new Button(buttonText[i]);
-            setupButtonSize(buttons[i], stage);
+            setupButtonSize(buttons[i]);
             styleButtons(buttons[i]);
             setButtonHover(buttons[i]);
 
@@ -48,7 +48,7 @@ public class CalculationButtons {
             });
 
             // HBox to hold each row of Buttons
-            if (i % 4 == 0) {
+            if (i % 5 == 0) {
                 row = new HBox(padding);
                 vbox.getChildren().add(row);
             }
@@ -70,6 +70,7 @@ public class CalculationButtons {
             case "/":
             case "%":
             case "(":
+            case "^":
                 calculationLabels.setResultLabel(calculation + " " + element + " ");
 
             case ")":
@@ -94,6 +95,22 @@ public class CalculationButtons {
                     e.printStackTrace();
                 }
                 break;
+
+                // square root
+            case "\u221A":
+                calculationLabels.setResultLabel(calculation + "sqrt ( ");
+                break;
+
+            case "sin()":
+                calculationLabels.setResultLabel(calculation + "sin ( ");
+                break;
+
+            case "cos()":
+                calculationLabels.setResultLabel(calculation + "cos ( ");
+                break;
+
+            case "tan()":
+                calculationLabels.setResultLabel(calculation + "tan ( ");
 
             default:
                 calculationLabels.setResultLabel(calculation + element);
@@ -135,7 +152,7 @@ public class CalculationButtons {
         button.setEffect(dropShadow);
         button.setStyle("-fx-background-color: #36384a; " +
                 "-fx-text-fill: white; " +
-                "-fx-font-size: 18pt; " +
+                "-fx-font-size: 15pt; " +
                 "-fx-font-family: Roboto;" +
                 "-fx-background-radius: 5px");
     }
@@ -145,11 +162,11 @@ public class CalculationButtons {
      *
      * @param button the button that should be adjusted in size
      */
-    public void setupButtonSize(Button button, Stage stage) {
+    public void setupButtonSize(Button button) {
         // Makes the "0" button double the width
         if (button.getText().equals("0")) {
             button.setPrefHeight(buttonHeight);
-            button.setPrefWidth(buttonWidth * 2);
+            button.setPrefWidth(buttonWidth * 2 + padding);
 
             // Scales the width and height of the button with the window size
             //button.prefHeightProperty().bind(Bindings.divide(stage.widthProperty(), 1.0));
@@ -178,7 +195,7 @@ public class CalculationButtons {
         button.setEffect(dropShadow);
         button.setStyle("-fx-background-color: #2e303f; " +
                 "-fx-text-fill: white; " +
-                "-fx-font-size: 18pt; " +
+                "-fx-font-size: 15pt; " +
                 "-fx-font-family: Roboto;" +
                 "-fx-background-radius: 5px");
     }

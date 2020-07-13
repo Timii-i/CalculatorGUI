@@ -52,7 +52,7 @@ public class CalculatorTest {
         assertEquals(0.90929742682, Calculator.getResult("sin (2)"), DELTA);
         assertEquals(0.14112000806, Calculator.getResult("sin (3)"), DELTA);
         assertEquals(-0.54402111088, Calculator.getResult("sin (3 + 7)"), DELTA);
-        assertEquals(0.98935824662, Calculator.getResult("sin (2 * 4)"), DELTA);
+        assertEquals(2.98935824662, Calculator.getResult("2 + sin (2 * 4)"), DELTA);
 
         // cos (Cosine) tests
         assertEquals(1., Calculator.getResult("cos ( 0 )"), DELTA);

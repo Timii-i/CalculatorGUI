@@ -70,6 +70,12 @@ public class Calculator {
                     throw new IllegalStateException("Programing Error! Implement: " + token.getType());
             }
         }
-        return Double.parseDouble(tokenStack.pop().getValue());
+        /**
+         * Returns the result of the calculation and rounds it to 7 decimals if needed
+         *
+         * <a href="https://stackoverflow.com/a/153753">
+         * Stackoverflow asterite</a>
+         */
+        return Math.round(Double.parseDouble(tokenStack.pop().getValue()) * 10000000d) / 10000000d;
     }
 }

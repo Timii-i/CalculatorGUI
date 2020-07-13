@@ -25,7 +25,7 @@ public class Token {
     }
 
     public enum Function {
-        SIN(4), COS(4), TAN(4);
+        SIN(4), COS(4), TAN(4), SQRT(4);
         public final int precedence;
 
         Function(int p) { precedence = p; }
@@ -44,6 +44,7 @@ public class Token {
        put("sin", Function.SIN);
        put("cos", Function.COS);
        put("tan", Function.TAN);
+       put("sqrt", Function.SQRT);
     }};
 
     private Type type = Type.NOT_DETERMINED;
@@ -67,7 +68,7 @@ public class Token {
         } else if (value.matches("[-+*/%^]")) {
             type = Type.OPERATOR;
             operator = ops.get(value);
-        } else if (value.matches("(sin|cos|tan)")) {
+        } else if (value.matches("(sin|cos|tan|sqrt)")) {
             type = Type.FUNCTION;
             function = funcs.get(value);
         } else {

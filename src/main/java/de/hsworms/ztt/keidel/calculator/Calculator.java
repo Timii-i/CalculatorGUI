@@ -21,38 +21,88 @@ public class Calculator {
                 case LITERAL:
                     tokenStack.push(token);
                     break;
+
+                    // constants (like pi and e)
+                case CONSTANT:
+                    switch (token.getConstant()) {
+                        case PI:
+                            tokenStack.push(new Token(String.valueOf(Math.PI)));
+                            break;
+                        case E:
+                            tokenStack.push(new Token(String.valueOf(Math.E)));
+                    }
+                    break;
+
+                    // operators (+,-,*,/,%,^,sin,cos,ln,log, etc.)
                 case OPERATOR:
-                    double operandB = Double.parseDouble(tokenStack.pop().getValue());
-                    double operandA = Double.parseDouble(tokenStack.pop().getValue());
+                    double operandB;
+                    double operandA;
                     switch (token.getOperator()) {
                         case ADD:
+                            operandB = Double.parseDouble(tokenStack.pop().getValue());
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
                             tokenStack.push(new Token(String.valueOf(operandA + operandB)));
                             break;
                         case SUBTRACT:
+                            operandB = Double.parseDouble(tokenStack.pop().getValue());
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
                             tokenStack.push(new Token(String.valueOf(operandA - operandB)));
                             break;
                         case MULTIPLY:
+                            operandB = Double.parseDouble(tokenStack.pop().getValue());
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
                             tokenStack.push(new Token(String.valueOf(operandA * operandB)));
                             break;
                         case DIVIDE:
+                            operandB = Double.parseDouble(tokenStack.pop().getValue());
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
                             tokenStack.push(new Token(String.valueOf(operandA / operandB)));
                             break;
                         case MODULO:
+                            operandB = Double.parseDouble(tokenStack.pop().getValue());
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
                             tokenStack.push(new Token(String.valueOf(operandA % operandB)));
                             break;
                         case EXPONENT:
+                            operandB = Double.parseDouble(tokenStack.pop().getValue());
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
                             tokenStack.push(new Token(String.valueOf(Math.pow(operandA, operandB))));
+                            break;
+                        case SIN:
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
+                            tokenStack.push(new Token(String.valueOf(Math.sin(operandA))));
+                            break;
+                        case COS:
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
+                            tokenStack.push(new Token(String.valueOf(Math.cos(operandA))));
+                            break;
+                        case TAN:
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
+                            tokenStack.push(new Token(String.valueOf(Math.tan(operandA))));
+                            break;
+                        case SQRT:
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
+                            tokenStack.push(new Token(String.valueOf(Math.sqrt(operandA))));
+                            break;
+                        case FACTORIAL:
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
+                            tokenStack.push(new Token(String.valueOf(factorial((int)operandA))));
+                            break;
+                        case LOG:
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
+                            tokenStack.push(new Token(String.valueOf(Math.log10(operandA))));
+                            break;
+                        case LN:
+                            operandA = Double.parseDouble(tokenStack.pop().getValue());
+                            tokenStack.push(new Token(String.valueOf(Math.log(operandA))));
                             break;
                         default:
                             throw new IllegalStateException("Programing Error! Implement: " + token.getOperator());
                     }
                     break;
-                case FUNCTION:
+                /*case FUNCTION:
                     double operand = Double.parseDouble(tokenStack.pop().getValue());
                     switch (token.getFunction()) {
-                        case SIN:
-                            tokenStack.push(new Token(String.valueOf(Math.sin(operand))));
-                            break;
                         case COS:
                             tokenStack.push(new Token(String.valueOf(Math.cos(operand))));
                             break;
@@ -62,12 +112,15 @@ public class Calculator {
                         case SQRT:
                             tokenStack.push(new Token(String.valueOf(Math.sqrt(operand))));
                             break;
+                        case FACTORIAL:
+                            tokenStack.push(new Token(String.valueOf(factorial((int)operand))));
+                            break;
                         default:
                             throw new IllegalStateException("Programing Error! Implement Function: " + token.getFunction());
                     }
                     break;
                 default:
-                    throw new IllegalStateException("Programing Error! Implement: " + token.getType());
+                    throw new IllegalStateException("Programing Error! Implement: " + token.getType());*/
             }
         }
         /**
@@ -77,5 +130,17 @@ public class Calculator {
          * Stackoverflow asterite</a>
          */
         return Math.round(Double.parseDouble(tokenStack.pop().getValue()) * 10000000d) / 10000000d;
+    }
+
+    /**
+     *
+     * @param n the value for the factorial
+     * @return the product of all positive integers less than or equal to n
+     */
+    private static int factorial(int n) {
+        if(n <= 2) {
+            return n;
+        }
+        return n * factorial(n - 1);
     }
 }

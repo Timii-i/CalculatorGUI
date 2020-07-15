@@ -74,7 +74,6 @@ public class CalculationButtons {
                 calculationLabels.setResultLabel(calculation + " " + element + " ");
                 break;
 
-
             case ")":
                 // if there hasn't been a opening bracket add a opening bracket else add a closing bracket
                 if (calculation.indexOf('(') != -1) {
@@ -187,17 +186,9 @@ public class CalculationButtons {
         if (button.getText().equals("0")) {
             button.setPrefHeight(buttonHeight);
             button.setPrefWidth(buttonWidth * 2 + padding);
-
-            // Scales the width and height of the button with the window size
-            //button.prefHeightProperty().bind(Bindings.divide(stage.widthProperty(), 1.0));
-            //button.prefWidthProperty().bind(Bindings.divide(stage.widthProperty(), 0.81));
         } else {
             button.setPrefHeight(buttonHeight);
             button.setPrefWidth(buttonWidth);
-
-            // Scales the width and height of the button with the window size
-            //button.prefHeightProperty().bind(Bindings.divide(stage.widthProperty(), 1.0));
-            //button.prefWidthProperty().bind(Bindings.divide(stage.widthProperty(), 1.0));
         }
     }
 

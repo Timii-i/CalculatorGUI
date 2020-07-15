@@ -1,5 +1,6 @@
 package de.hsworms.ztt.keidel.calculator;
 
+import de.hsworms.ztt.keidel.calculator.gui.CalculationLabels;
 import de.hsworms.ztt.keidel.calculator.tokenizer.Token;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.Stack;
 public class Calculator {
 
     public static double getResult(String infix) throws IOException {
+        CalculationLabels calculationLabels = new CalculationLabels();
         List<Token> tokenList = InfixToPostfixConverter.toPostfixListOfToken(infix);
         Stack<Token> tokenStack = new Stack<>();
         for (Token token : tokenList) {
@@ -31,6 +33,9 @@ public class Calculator {
                         case E:
                             tokenStack.push(new Token(String.valueOf(Math.E)));
                             break;
+                        default:
+                            calculationLabels.putError();
+                            throw new IllegalStateException("Programing Error! Implement Function: " + token.getConstant());
                     }
                     break;
 
@@ -58,6 +63,7 @@ public class Calculator {
                             tokenStack.push(new Token(String.valueOf(Math.pow(operandA, operandB))));
                             break;
                         default:
+                            calculationLabels.putError();
                             throw new IllegalStateException("Programing Error! Implement: " + token.getOperator());
                     }
                     break;
@@ -88,10 +94,12 @@ public class Calculator {
                             tokenStack.push(new Token(String.valueOf(Math.log(operand))));
                             break;
                         default:
+                            calculationLabels.putError();
                             throw new IllegalStateException("Programing Error! Implement Function: " + token.getFunction());
                     }
                     break;
                 default:
+                    calculationLabels.putError();
                     throw new IllegalStateException("Programing Error! Implement: " + token.getType());
             }
         }
@@ -111,8 +119,16 @@ public class Calculator {
      * @return the product of all positive integers less than or equal to n
      */
     private static int factorial(int n) {
-        if (n == 0) { return 1; }
-        else if(n <= 2) { return n; }
-        return (n * factorial(n - 1));
+        try {
+            if (n >= 1) { return n * factorial(n - 1); }
+            else { return 1; }
+        } catch (StackOverflowError soe){
+            CalculationLabels calculationLabels = new CalculationLabels();
+            // show "Error" in the resultLabel if an StackOverflow appears
+            calculationLabels.putError();
+
+            soe.printStackTrace();
+        }
+        return -1;
     }
 }

@@ -64,10 +64,21 @@ public class CalculationButtons {
     public void editCalculation(String element) {
         String calculation = calculationLabels.getResultLabel();
         switch (element){
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+            case "%":
+            case "(":
+            case "^":
+                calculationLabels.setResultLabel(calculation + " " + element + " ");
+                break;
+
+
             case ")":
                 // if there hasn't been a opening bracket add a opening bracket else add a closing bracket
                 if (calculation.indexOf('(') != -1) {
-                    calculationLabels.setResultLabel(calculation + " )");
+                    calculationLabels.setResultLabel(calculation + " ) ");
                 }
                 break;
 
@@ -75,7 +86,6 @@ public class CalculationButtons {
                 try {
                     double result = Calculator.getResult(calculation);
                     // Show the calculation in postfix in the postfixLabel
-                    System.out.println("postfix: " + InfixToPostfixConverter.toPostfix(calculation));
                     calculationLabels.setPostfixLabel(InfixToPostfixConverter.toPostfix(calculation));
                     // Show the calculation in infix in the infixLabel
                     calculationLabels.setInfixLabel((calculation));
@@ -91,38 +101,39 @@ public class CalculationButtons {
                 // pi
             case "\u03C0":
                 calculationLabels.setResultLabel(calculation + "pi");
+                break;
 
                 // square root
             case "\u221A":
-                calculationLabels.setResultLabel(calculation + "sqrt (");
+                calculationLabels.setResultLabel(calculation + "sqrt ( ");
                 break;
 
             case "sin()":
-                calculationLabels.setResultLabel(calculation + "sin (");
+                calculationLabels.setResultLabel(calculation + "sin ( ");
                 break;
 
             case "cos()":
-                calculationLabels.setResultLabel(calculation + "cos (");
+                calculationLabels.setResultLabel(calculation + "cos ( ");
                 break;
 
             case "tan()":
-                calculationLabels.setResultLabel(calculation + "tan (");
+                calculationLabels.setResultLabel(calculation + "tan ( ");
                 break;
 
             case "!":
-                calculationLabels.setResultLabel(calculation + "fac (");
+                calculationLabels.setResultLabel(calculation + "fac ( ");
                 break;
 
             case "log()":
-                calculationLabels.setResultLabel(calculation + "log (");
+                calculationLabels.setResultLabel(calculation + "log ( ");
                 break;
 
             case "ln()":
-                calculationLabels.setResultLabel(calculation + "ln (");
+                calculationLabels.setResultLabel(calculation + "ln ( ");
                 break;
 
             default:
-                calculationLabels.setResultLabel(calculation + " " + element);
+                calculationLabels.setResultLabel(calculation + element);
 
         }
         System.out.println("calculation: " + calculationLabels.getResultLabel());

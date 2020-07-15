@@ -40,6 +40,13 @@ public class InfixToPostfixConverter {
                 }
                 stack.push(token);
 
+                // functions
+            } else if (Token.funcs.containsKey(token)) {
+                while (!stack.isEmpty() && isHigherPrecedence(token, stack.peek())) {
+                    output.append(stack.pop()).append(' ');
+                }
+                stack.push(token);
+
                 // left parenthesis
             }  else if (token.equals("(")) {
                 stack.push(token);

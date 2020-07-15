@@ -36,12 +36,15 @@ public class CalculatorTest {
         assertEquals(0., Calculator.getResult("(1 + 1) % 2"), DELTA);
         assertEquals(0., Calculator.getResult("(1 + 1) % (1 + 1)"), DELTA);
         assertEquals(0., Calculator.getResult("(1023 + 1) % (1 + 1)"), DELTA);
+        assertEquals(0.6, Calculator.getResult("7 % 3.2"), DELTA);
+        assertEquals(0.9, Calculator.getResult("23 % 1.7"), DELTA);
 
         // Exponent tests
         assertEquals(1., Calculator.getResult("2 ^ 0"), DELTA);
         assertEquals(2., Calculator.getResult("2 ^ 1"), DELTA);
         assertEquals(0., Calculator.getResult("0 ^ 2"), DELTA);
         assertEquals(243., Calculator.getResult("3 ^ 5"), DELTA);
+        assertEquals(8.57418770029, Calculator.getResult("2 ^ 3.1"), DELTA);
         assertEquals(288., Calculator.getResult("(2 ^ 5) * (3 ^ 2)"), DELTA);
         assertEquals(16807., Calculator.getResult("(2 + 5) ^ (3 + 2)"), DELTA);
 
@@ -50,6 +53,7 @@ public class CalculatorTest {
         assertEquals(0., Calculator.getResult("sin (0)"), DELTA);
         assertEquals(0., Calculator.getResult("sin(0)"), DELTA);
         assertEquals(0., Calculator.getResult("sin (0  )"), DELTA);
+        assertEquals(0.51550137182, Calculator.getResult("sin (2.6)"), DELTA);
         assertEquals(1., Calculator.getResult("1 + sin (0)"), DELTA);
         assertEquals(1., Calculator.getResult("sin (0) + 1"), DELTA);
         assertEquals(1., Calculator.getResult("sin(0)+1"), DELTA);
@@ -128,5 +132,6 @@ public class CalculatorTest {
         assertEquals(3.71828182846, Calculator.getResult("e + 1"), DELTA);
         assertEquals(3.71828182846, Calculator.getResult("1 + e"), DELTA);
         assertEquals(15.1542622415, Calculator.getResult("e ^ e"), DELTA);
+        assertEquals(0.4107812905, Calculator.getResult("sin (e)"), DELTA);
     }
 }

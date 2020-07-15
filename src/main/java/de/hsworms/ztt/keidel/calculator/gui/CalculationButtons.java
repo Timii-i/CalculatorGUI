@@ -19,8 +19,6 @@ public class CalculationButtons {
     final int buttonWidth = 75;
     final int buttonHeight = 75;
 
-    CalculationLabels calculationLabels = new CalculationLabels();
-
     /**
      * Setups every button with a name, size and place in the window
      *
@@ -29,7 +27,7 @@ public class CalculationButtons {
     public void setupCalculatorButtons(VBox vbox, Stage stage) {
         HBox row = null;
         // Array for the Button texts (\u221A is the Unicode for the square root icon)
-        String[] buttonText = {"!","\u03C0","e","log()","ln()","AC","(",")","%","^","7","8","9","/","\u221A","4","5","6","*","sin()","1","2","3","-","cos()","0","=","+","tan()"};
+        String[] buttonText = {"fac()","\u03C0","e","log()","ln()","AC","(",")","%","^","7","8","9","/","\u221A","4","5","6","*","sin()","1","2","3","-","cos()",".","0","=","+","tan()"};
         // Array for each button
         Button[] buttons = new Button[buttonText.length];
 
@@ -62,7 +60,7 @@ public class CalculationButtons {
      * @param element the text of the button that's pressed
      */
     public void editCalculation(String element) {
-        String calculation = calculationLabels.getResultLabel();
+        String calculation = CalculationLabels.getResultLabel();
         switch (element){
             case "+":
             case "-":
@@ -71,13 +69,13 @@ public class CalculationButtons {
             case "%":
             case "(":
             case "^":
-                calculationLabels.setResultLabel(calculation + " " + element + " ");
+                CalculationLabels.setResultLabel(calculation + " " + element + " ");
                 break;
 
             case ")":
                 // if there hasn't been a opening bracket add a opening bracket else add a closing bracket
                 if (calculation.indexOf('(') != -1) {
-                    calculationLabels.setResultLabel(calculation + " ) ");
+                    CalculationLabels.setResultLabel(calculation + " ) ");
                 }
                 break;
 
@@ -85,11 +83,11 @@ public class CalculationButtons {
                 try {
                     double result = Calculator.getResult(calculation);
                     // Show the calculation in postfix in the postfixLabel
-                    calculationLabels.setPostfixLabel(InfixToPostfixConverter.toPostfix(calculation));
+                    CalculationLabels.setPostfixLabel(InfixToPostfixConverter.toPostfix(calculation));
                     // Show the calculation in infix in the infixLabel
-                    calculationLabels.setInfixLabel((calculation));
+                    CalculationLabels.setInfixLabel((calculation));
                     // Show the result of the calculation in resultLabel
-                    calculationLabels.setResultLabel(Double.toString(result));
+                    CalculationLabels.setResultLabel(Double.toString(result));
 
                 }
                 catch (IOException e) {
@@ -99,52 +97,52 @@ public class CalculationButtons {
 
                 // pi
             case "\u03C0":
-                calculationLabels.setResultLabel(calculation + "pi");
+                CalculationLabels.setResultLabel(calculation + "pi");
                 break;
 
                 // square root
             case "\u221A":
-                calculationLabels.setResultLabel(calculation + "sqrt ( ");
+                CalculationLabels.setResultLabel(calculation + "sqrt ( ");
                 break;
 
             case "sin()":
-                calculationLabels.setResultLabel(calculation + "sin ( ");
+                CalculationLabels.setResultLabel(calculation + "sin ( ");
                 break;
 
             case "cos()":
-                calculationLabels.setResultLabel(calculation + "cos ( ");
+                CalculationLabels.setResultLabel(calculation + "cos ( ");
                 break;
 
             case "tan()":
-                calculationLabels.setResultLabel(calculation + "tan ( ");
+                CalculationLabels.setResultLabel(calculation + "tan ( ");
                 break;
 
-            case "!":
-                calculationLabels.setResultLabel(calculation + "fac ( ");
+            case "fac()":
+                CalculationLabels.setResultLabel(calculation + "fac ( ");
                 break;
 
             case "log()":
-                calculationLabels.setResultLabel(calculation + "log ( ");
+                CalculationLabels.setResultLabel(calculation + "log ( ");
                 break;
 
             case "ln()":
-                calculationLabels.setResultLabel(calculation + "ln ( ");
+                CalculationLabels.setResultLabel(calculation + "ln ( ");
                 break;
 
             default:
-                calculationLabels.setResultLabel(calculation + element);
+                CalculationLabels.setResultLabel(calculation + element);
 
         }
-        System.out.println("calculation: " + calculationLabels.getResultLabel());
+        System.out.println("calculation: " + CalculationLabels.getResultLabel());
     }
 
     /**
      * Clears postfixLabel, infixLabel and resultLabel
      */
     public void clearCalculation() {
-        calculationLabels.setPostfixLabel("");
-        calculationLabels.setInfixLabel("");
-        calculationLabels.setResultLabel("");
+        CalculationLabels.setPostfixLabel("");
+        CalculationLabels.setInfixLabel("");
+        CalculationLabels.setResultLabel("");
     }
 
     /**
@@ -182,14 +180,8 @@ public class CalculationButtons {
      * @param button the button that should be adjusted in size
      */
     public void setupButtonSize(Button button) {
-        // Makes the "0" button double the width
-        if (button.getText().equals("0")) {
-            button.setPrefHeight(buttonHeight);
-            button.setPrefWidth(buttonWidth * 2 + padding);
-        } else {
-            button.setPrefHeight(buttonHeight);
-            button.setPrefWidth(buttonWidth);
-        }
+        button.setPrefHeight(buttonHeight);
+        button.setPrefWidth(buttonWidth);
     }
 
     /**

@@ -15,7 +15,6 @@ import java.util.Stack;
 public class Calculator {
 
     public static double getResult(String infix) throws IOException {
-        CalculationLabels calculationLabels = new CalculationLabels();
         List<Token> tokenList = InfixToPostfixConverter.toPostfixListOfToken(infix);
         Stack<Token> tokenStack = new Stack<>();
         for (Token token : tokenList) {
@@ -34,7 +33,7 @@ public class Calculator {
                             tokenStack.push(new Token(String.valueOf(Math.E)));
                             break;
                         default:
-                            calculationLabels.putError();
+                            CalculationLabels.putError();
                             throw new IllegalStateException("Programing Error! Implement Function: " + token.getConstant());
                     }
                     break;
@@ -63,7 +62,7 @@ public class Calculator {
                             tokenStack.push(new Token(String.valueOf(Math.pow(operandA, operandB))));
                             break;
                         default:
-                            calculationLabels.putError();
+                            CalculationLabels.putError();
                             throw new IllegalStateException("Programing Error! Implement: " + token.getOperator());
                     }
                     break;
@@ -94,12 +93,12 @@ public class Calculator {
                             tokenStack.push(new Token(String.valueOf(Math.log(operand))));
                             break;
                         default:
-                            calculationLabels.putError();
+                            CalculationLabels.putError();
                             throw new IllegalStateException("Programing Error! Implement Function: " + token.getFunction());
                     }
                     break;
                 default:
-                    calculationLabels.putError();
+                    CalculationLabels.putError();
                     throw new IllegalStateException("Programing Error! Implement: " + token.getType());
             }
         }
@@ -114,6 +113,7 @@ public class Calculator {
     }
 
     /**
+     * Calculates the product of all positive integers less than or equal to a given number
      *
      * @param n the value for the factorial
      * @return the product of all positive integers less than or equal to n
@@ -125,7 +125,7 @@ public class Calculator {
         } catch (StackOverflowError soe){
             CalculationLabels calculationLabels = new CalculationLabels();
             // show "Error" in the resultLabel if an StackOverflow appears
-            calculationLabels.putError();
+            CalculationLabels.putError();
 
             soe.printStackTrace();
         }

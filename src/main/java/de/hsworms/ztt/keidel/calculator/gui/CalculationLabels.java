@@ -125,15 +125,13 @@ public class CalculationLabels {
     /**
      * Getters and Setters for every Label
      */
-    public void setResultLabel(String calculation) { resultLabel.setText(calculation); }
+    public static void setResultLabel(String calculation) { resultLabel.setText(calculation); }
 
-    public String getResultLabel() { return resultLabel.getText(); }
+    public static String getResultLabel() { return resultLabel.getText(); }
 
-    public void setInfixLabel(String calculation) {
-        infixLabel.setText(calculation);
-    }
+    public static void setInfixLabel(String calculation) { infixLabel.setText(calculation); }
 
-    public void setPostfixLabel(String calculation) { postfixLabel.setText(calculation); }
+    public static void setPostfixLabel(String calculation) { postfixLabel.setText(calculation); }
 
-    public void putError() { setResultLabel("Error"); }
+    public static void putError() { setResultLabel("Error"); }
 }

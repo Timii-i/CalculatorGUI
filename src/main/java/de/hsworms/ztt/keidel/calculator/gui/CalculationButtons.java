@@ -29,7 +29,7 @@ public class CalculationButtons {
     public void setupCalculatorButtons(VBox vbox, Stage stage) {
         HBox row = null;
         // Array for the Button texts (\u221A is the Unicode for the square root icon)
-        String[] buttonText = {"AC","(",")","%","^","7","8","9","/","\u221A","4","5","6","*","sin()","1","2","3","-","cos()","0","=","+","tan()"};
+        String[] buttonText = {"!","\u03C0","e","log()","ln()","AC","(",")","%","^","7","8","9","/","\u221A","4","5","6","*","sin()","1","2","3","-","cos()","0","=","+","tan()"};
         // Array for each button
         Button[] buttons = new Button[buttonText.length];
 
@@ -64,19 +64,10 @@ public class CalculationButtons {
     public void editCalculation(String element) {
         String calculation = calculationLabels.getResultLabel();
         switch (element){
-            case "+":
-            case "-":
-            case "*":
-            case "/":
-            case "%":
-            case "(":
-            case "^":
-                calculationLabels.setResultLabel(calculation + " " + element + " ");
-
             case ")":
                 // if there hasn't been a opening bracket add a opening bracket else add a closing bracket
                 if (calculation.indexOf('(') != -1) {
-                    calculationLabels.setResultLabel(calculation + " ) ");
+                    calculationLabels.setResultLabel(calculation + " )");
                 }
                 break;
 
@@ -84,6 +75,7 @@ public class CalculationButtons {
                 try {
                     double result = Calculator.getResult(calculation);
                     // Show the calculation in postfix in the postfixLabel
+                    System.out.println("postfix: " + InfixToPostfixConverter.toPostfix(calculation));
                     calculationLabels.setPostfixLabel(InfixToPostfixConverter.toPostfix(calculation));
                     // Show the calculation in infix in the infixLabel
                     calculationLabels.setInfixLabel((calculation));
@@ -96,24 +88,41 @@ public class CalculationButtons {
                 }
                 break;
 
+                // pi
+            case "\u03C0":
+                calculationLabels.setResultLabel(calculation + "pi");
+
                 // square root
             case "\u221A":
-                calculationLabels.setResultLabel(calculation + "sqrt ( ");
+                calculationLabels.setResultLabel(calculation + "sqrt (");
                 break;
 
             case "sin()":
-                calculationLabels.setResultLabel(calculation + "sin ( ");
+                calculationLabels.setResultLabel(calculation + "sin (");
                 break;
 
             case "cos()":
-                calculationLabels.setResultLabel(calculation + "cos ( ");
+                calculationLabels.setResultLabel(calculation + "cos (");
                 break;
 
             case "tan()":
-                calculationLabels.setResultLabel(calculation + "tan ( ");
+                calculationLabels.setResultLabel(calculation + "tan (");
+                break;
+
+            case "!":
+                calculationLabels.setResultLabel(calculation + "fac (");
+                break;
+
+            case "log()":
+                calculationLabels.setResultLabel(calculation + "log (");
+                break;
+
+            case "ln()":
+                calculationLabels.setResultLabel(calculation + "ln (");
+                break;
 
             default:
-                calculationLabels.setResultLabel(calculation + element);
+                calculationLabels.setResultLabel(calculation + " " + element);
 
         }
         System.out.println("calculation: " + calculationLabels.getResultLabel());

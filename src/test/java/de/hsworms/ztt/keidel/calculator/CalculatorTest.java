@@ -13,6 +13,7 @@ public class CalculatorTest {
     @Test
     public void getResult() throws IOException {
         assertEquals(2.0, Calculator.getResult("(1+1)"), DELTA);
+        assertEquals(2.0, Calculator.getResult("1+1"), DELTA);
         assertEquals(4.0, Calculator.getResult("(1+1)*2"), DELTA);
         assertEquals(2.0, Calculator.getResult("(1+1)*(2 - 1)"), DELTA);
         assertEquals(121.0, Calculator.getResult("(120+1)*(2 - 1)"), DELTA);
@@ -47,9 +48,11 @@ public class CalculatorTest {
         // sin (Sine) tests
         assertEquals(0., Calculator.getResult("sin ( 0 )"), DELTA);
         assertEquals(0., Calculator.getResult("sin (0)"), DELTA);
+        assertEquals(0., Calculator.getResult("sin(0)"), DELTA);
         assertEquals(0., Calculator.getResult("sin (0  )"), DELTA);
         assertEquals(1., Calculator.getResult("1 + sin (0)"), DELTA);
         assertEquals(1., Calculator.getResult("sin (0) + 1"), DELTA);
+        assertEquals(1., Calculator.getResult("sin(0)+1"), DELTA);
         assertEquals(0.8414709848, Calculator.getResult("sin (1)"), DELTA);
         assertEquals(0.90929742682, Calculator.getResult("sin (2)"), DELTA);
         assertEquals(0.14112000806, Calculator.getResult("sin (3)"), DELTA);
@@ -84,7 +87,7 @@ public class CalculatorTest {
         assertEquals(4.05144586072, Calculator.getResult("sqrt (3 * 5 + sqrt (2))"), DELTA);
 
         // fac (factorial) tests
-        assertEquals(0., Calculator.getResult("fac (0)"), DELTA);
+        assertEquals(1., Calculator.getResult("fac (0)"), DELTA);
         assertEquals(1., Calculator.getResult("fac (1)"), DELTA);
         assertEquals(2., Calculator.getResult("fac (2)"), DELTA);
         assertEquals(6., Calculator.getResult("fac (3)"), DELTA);

@@ -12,7 +12,20 @@ import java.util.*;
 public class InfixToPostfixConverter {
 
     private static boolean isHigherPrecedence(String op, String sub) {
-        return (Token.ops.containsKey(sub) && Token.ops.get(sub).precedence >= Token.ops.get(op).precedence);
+        if (Token.ops.containsKey(sub) && Token.ops.containsKey(op)) {
+            return Token.ops.get(sub).precedence >= Token.ops.get(op).precedence;
+
+        } else if (Token.ops.containsKey(sub) && Token.funcs.containsKey(op)) {
+            return Token.ops.get(sub).precedence >= Token.funcs.get(op).precedence;
+
+        } else if (Token.funcs.containsKey(sub) && Token.ops.containsKey(op)) {
+            return Token.funcs.get(sub).precedence >= Token.ops.get(op).precedence;
+
+        } else if (Token.funcs.containsKey(sub) && Token.funcs.containsKey(op)) {
+            return Token.funcs.get(sub).precedence >= Token.funcs.get(op).precedence;
+
+        }
+        return false;
     }
 
     public static String toPostfix(String infix) {
@@ -64,6 +77,7 @@ public class InfixToPostfixConverter {
                     }
                     stack.push(token);
                     break;
+                case FUNCTION:
                 case LEFT_BRACKET:
                     stack.push(token);
                     break;

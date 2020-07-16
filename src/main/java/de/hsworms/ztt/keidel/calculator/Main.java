@@ -12,9 +12,9 @@ public class Main {
     public static void main(String[] args) {
 
         // Launches the gui application
-        //launch(MainLayout.class, args);
+        launch(MainLayout.class, args);
 
-        while(true) {
+        /*while(true) {
             System.out.println("Please type an infix mathematical expression:");
             Scanner scanner = new Scanner(System.in);
             String infix = scanner.nextLine();
@@ -24,7 +24,7 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     public static double getCalculatorResult(String infix) throws IOException {

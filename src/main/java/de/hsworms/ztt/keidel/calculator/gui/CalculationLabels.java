@@ -98,10 +98,20 @@ public class CalculationLabels {
             Text resultText = new Text(resultLabel.getText());
             resultText.setFont(Font.font(fontSize));
 
-            // Checks if the width of the text is bigger than the width of the label. If yes divide the fontSize with 1.3
+            // Checks if the width of the text is bigger than the width of the label. If yes divide the fontSize with 1.2
             if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 20 && fontSize > 15) {
-                System.out.println(fontSize);
-                fontSize /= 1.3;
+                fontSize /= 1.2;
+                resultLabel.setStyle("-fx-background-color: #1c1e27; " +
+                        "-fx-text-fill: white; " +
+                        "-fx-padding: 0 10 0 0; " +
+                        "-fx-font-family: Roboto; " +
+                        "-fx-background-radius: 5px; " +
+                        "-fx-font-size: " + fontSize + "px");
+            }
+
+            // If the width of the text is smaller than 1.5 of the label width and the fontSize is smaller than 60 scale the font back up to 60
+            else if (resultText.getLayoutBounds().getWidth() <= (resultLabel.getBoundsInLocal().getWidth() / 1.5) && fontSize < 60) {
+                fontSize = 60;
                 resultLabel.setStyle("-fx-background-color: #1c1e27; " +
                         "-fx-text-fill: white; " +
                         "-fx-padding: 0 10 0 0; " +
@@ -115,13 +125,13 @@ public class CalculationLabels {
     /**
      * Getters and Setters for every Label
      */
-    public void setResultLabel(String calculation) { resultLabel.setText(calculation); }
+    public static void setResultLabel(String calculation) { resultLabel.setText(calculation); }
 
-    public String getResultLabel() { return resultLabel.getText(); }
+    public static String getResultLabel() { return resultLabel.getText(); }
 
-    public void setInfixLabel(String calculation) {
-        infixLabel.setText(calculation);
-    }
+    public static void setInfixLabel(String calculation) { infixLabel.setText(calculation); }
 
-    public void setPostfixLabel(String calculation) { postfixLabel.setText(calculation); }
+    public static void setPostfixLabel(String calculation) { postfixLabel.setText(calculation); }
+
+    public static void putError() { setResultLabel("Error"); }
 }

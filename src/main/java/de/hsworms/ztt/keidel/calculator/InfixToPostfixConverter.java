@@ -12,11 +12,20 @@ import java.util.*;
 public class InfixToPostfixConverter {
 
     private static boolean isHigherPrecedence(String op, String sub) {
-        return (Token.ops.containsKey(sub) && Token.ops.get(sub).precedence >= Token.ops.get(op).precedence);
-    }
+        if (Token.ops.containsKey(sub) && Token.ops.containsKey(op)) {
+            return Token.ops.get(sub).precedence >= Token.ops.get(op).precedence;
 
-    private static boolean isHigherPrecedenceFunc(String func, String sub) {
-        return (Token.funcs.containsKey(sub) && Token.funcs.get(sub).precedence >= Token.funcs.get(func).precedence);
+        } else if (Token.ops.containsKey(sub) && Token.funcs.containsKey(op)) {
+            return Token.ops.get(sub).precedence >= Token.funcs.get(op).precedence;
+
+        } else if (Token.funcs.containsKey(sub) && Token.ops.containsKey(op)) {
+            return Token.funcs.get(sub).precedence >= Token.ops.get(op).precedence;
+
+        } else if (Token.funcs.containsKey(sub) && Token.funcs.containsKey(op)) {
+            return Token.funcs.get(sub).precedence >= Token.funcs.get(op).precedence;
+
+        }
+        return false;
     }
 
     public static String toPostfix(String infix) {
@@ -31,15 +40,15 @@ public class InfixToPostfixConverter {
                 }
                 stack.push(token);
 
-                // function
+                // functions
             } else if (Token.funcs.containsKey(token)) {
-                while (!stack.isEmpty() && isHigherPrecedenceFunc(token, stack.peek())) {
+                while (!stack.isEmpty() && isHigherPrecedence(token, stack.peek())) {
                     output.append(stack.pop()).append(' ');
                 }
                 stack.push(token);
 
                 // left parenthesis
-            } else if (token.equals("(")) {
+            }  else if (token.equals("(")) {
                 stack.push(token);
 
                 // right parenthesis
@@ -76,11 +85,6 @@ public class InfixToPostfixConverter {
                     stack.push(token);
                     break;
                 case FUNCTION:
-                    while (!stack.isEmpty() && isHigherPrecedenceFunc(token.getValue(), stack.peek().getValue())) {
-                        output.add(stack.pop());
-                    }
-                    stack.push(token);
-                    break;
                 case LEFT_BRACKET:
                     stack.push(token);
                     break;
@@ -91,6 +95,7 @@ public class InfixToPostfixConverter {
                     stack.pop();
                     break;
                 case LITERAL:
+                case CONSTANT:
                     output.add(token);
                     break;
                 default:

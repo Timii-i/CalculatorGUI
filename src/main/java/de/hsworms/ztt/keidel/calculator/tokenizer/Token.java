@@ -1,13 +1,15 @@
 package de.hsworms.ztt.keidel.calculator.tokenizer;
 
 
+import de.hsworms.ztt.keidel.calculator.gui.CalculationLabels;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Token {
 
     public enum Type {
-        LITERAL, OPERATOR, FUNCTION, LEFT_BRACKET, RIGHT_BRACKET, NOT_DETERMINED
+        LITERAL, OPERATOR, FUNCTION, CONSTANT, LEFT_BRACKET, RIGHT_BRACKET, NOT_DETERMINED
     }
 
     /**
@@ -25,10 +27,16 @@ public class Token {
     }
 
     public enum Function {
-        SIN(4), COS(4), TAN(4), SQRT(4);
+        SIN(4), COS(4), TAN(4), SQRT(4), FACTORIAL(4), LOG(4), LN(4);
         public final int precedence;
 
-        Function(int p) { precedence = p; }
+        Function(int p) {
+            precedence = p;
+        }
+    }
+
+    public enum Constant {
+        PI, E
     }
 
     public static Map<String, Token.Operator> ops = new HashMap<String, Operator>() {{
@@ -41,17 +49,26 @@ public class Token {
     }};
 
     public static Map<String, Token.Function> funcs = new HashMap<String, Function>() {{
-       put("sin", Function.SIN);
-       put("cos", Function.COS);
-       put("tan", Function.TAN);
-       put("sqrt", Function.SQRT);
+        put("sin", Function.SIN);
+        put("cos", Function.COS);
+        put("tan", Function.TAN);
+        put("sqrt", Function.SQRT);
+        put("fac", Function.FACTORIAL);
+        put("log", Function.LOG);
+        put("ln", Function.LN);
     }};
 
-    private Type type = Type.NOT_DETERMINED;
+    public static Map<String, Token.Constant> cons = new HashMap<String, Constant>() {{
+        put("pi", Constant.PI);
+        put("e", Constant.E);
+    }};
+
+    private Type type;
     private String value;
 
     private Operator operator = null;
     private Function function = null;
+    private Constant constant = null;
 
     /**
      * Evaluates input String on the fly.
@@ -68,10 +85,15 @@ public class Token {
         } else if (value.matches("[-+*/%^]")) {
             type = Type.OPERATOR;
             operator = ops.get(value);
-        } else if (value.matches("(sin|cos|tan|sqrt)")) {
+        } else if (value.matches("(sin|cos|tan|sqrt|fac|log|ln)")) {
             type = Type.FUNCTION;
             function = funcs.get(value);
+        } else if (value.matches("(e|pi)")) {
+            type = Type.CONSTANT;
+            constant = cons.get(value);
         } else {
+            CalculationLabels.setResultLabel("Error");
+
             throw new IllegalStateException("Programing Error! Implement: " + value);
         }
         this.value = value;
@@ -92,6 +114,8 @@ public class Token {
     public Type getType() {
         return type;
     }
+
+    public Constant getConstant() { return constant; }
 
     public Function getFunction() { return function; }
 }

@@ -120,9 +120,7 @@ public class WindowDecoration {
      * @param button the button that is styled
      */
     private void styleWindowButtons(Button button) {
-        button.setStyle("-fx-background-color: #1c1e27; " +
-                "-fx-text-fill: white; " +
-                "-fx-font-family: Roboto;");
+        button.setStyle("-fx-background-color: #1c1e27;");
     }
 
     /**
@@ -138,9 +136,13 @@ public class WindowDecoration {
                 "-fx-background-radius: 5px");
     }
 
+    /**
+     * Add button hover effect
+     *
+     * @param button for which the hover effect is added
+     */
     private void setWindowButtonHover(Button button) {
-        button.setStyle("-fx-background-color: #2e303f; " +
-                "-fx-text-fill: white; " +
-                "-fx-font-family: Roboto;");
+        // brighten the background
+        button.setStyle("-fx-background-color: #2e303f;");
     }
 }

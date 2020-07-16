@@ -49,7 +49,7 @@ public class MainLayout extends Application{
         root.setStyle("-fx-background-color: transparent");
 
         // Create a scene with the size of 320 x 470 and a transparent background
-        Scene scene = new Scene(root, 320, 470, Color.TRANSPARENT);
+        Scene scene = new Scene(root, 420, 550, Color.TRANSPARENT);
         // Import the Roboto font from Google Web Fonts for us to use
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 

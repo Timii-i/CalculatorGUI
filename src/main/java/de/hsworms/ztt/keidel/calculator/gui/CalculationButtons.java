@@ -16,7 +16,7 @@ import java.io.IOException;
 public class CalculationButtons {
 
     final int padding = 4;
-    final int buttonWidth = 75;
+    final int buttonWidth = 80;
     final int buttonHeight = 75;
 
     /**
@@ -26,8 +26,8 @@ public class CalculationButtons {
      */
     public void setupCalculatorButtons(VBox vbox, Stage stage) {
         HBox row = null;
-        // Array for the Button texts (\u221A is the Unicode for the square root icon)
-        String[] buttonText = {"fac()","\u03C0","e","log()","ln()","AC","(",")","%","^","7","8","9","/","\u221A","4","5","6","*","sin()","1","2","3","-","cos()",".","0","=","+","tan()"};
+        // Array for the Button texts (\u221A is the Unicode for the square root icon and \u03C0 is the Unicode for the pi symbol)
+        String[] buttonText = {"log()","ln()","\u03C0","e","AC","\u221A","(",")","%","^","fac()","7","8","9","/","sin()","4","5","6","*","cos()","1","2","3","-","tan()",".","0","=","+"};
         // Array for each button
         Button[] buttons = new Button[buttonText.length];
 
@@ -36,8 +36,22 @@ public class CalculationButtons {
             String buttonName = buttonText[i];
             buttons[i] = new Button(buttonText[i]);
             setupButtonSize(buttons[i]);
-            styleButtons(buttons[i]);
-            setButtonHover(buttons[i]);
+
+            // Colors the button borders accordingly if they're the "AC", "=", ".", non number and number button
+            if (i <= 10 || (i >= 14 && i <= 15) || (i >= 19 && i <= 20) || (i >= 24 && i <= 25) || i == 29) {
+                styleNonNumberButtons(buttons[i]);
+                // Add a button hover effect
+                setNonNumberButtonHover(buttons[i]);
+                // Add pressed effect
+                setNonNumberButtonPressed(buttons[i]);
+            }
+            else {
+                styleNumberButtons(buttons[i]);
+                // Add a button hover effect
+                setNumberButtonHover(buttons[i]);
+                // Add pressed effect
+                setNumberButtonPressed(buttons[i]);
+            }
 
             // Sets the handler for each button
             buttons[i].setOnAction(event -> {
@@ -146,32 +160,103 @@ public class CalculationButtons {
     }
 
     /**
-     * Adds the mouse hover handlers for a given button
+     * Adds an effect for when a button pressed and the mouse pressed and released handler
      *
-     * @param button the button for which a hover effect should be added
+     * @param button the button for which the "pressed" effect is added
      */
-    public void setButtonHover(Button button) {
-        button.setOnMouseEntered(event -> setButtonsHover(button));
-        button.setOnMouseExited(event -> styleButtons(button));
+    private void setNonNumberButtonPressed(Button button) {
+        // Set even brighter background
+        button.setOnMousePressed(event -> {
+            button.setEffect(setDropShadow());
+            if (button.getText().equals("AC")) {
+                setButtonStyle(button, "#4b4e68", "#fc5e87");
+            } else {
+                setButtonStyle(button, "#4b4e68", "#ffc093");
+            }
+        });
+
+        // Set the background back to when mouse hovers
+        button.setOnMouseReleased(event -> {
+            button.setEffect(setDropShadow());
+            if (button.getText().equals("AC")) {
+                setButtonStyle(button, "#36384a", "#fc5e87");
+            } else {
+                setButtonStyle(button, "#36384a", "#ffc093");
+            }
+        });
     }
 
     /**
-     * Adds a hover effect for a given button
+     * Adds an effect for when a button pressed and the mouse pressed and released handler
      *
-     * @param button the button for which the hover effect is added
+     * @param button the button for which the "pressed" effect is added
      */
-    private void setButtonsHover(Button button) {
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setOffsetX(1);
-        dropShadow.setOffsetY(1);
-        dropShadow.setWidth(10);
-        dropShadow.setHeight(10);
-        button.setEffect(dropShadow);
-        button.setStyle("-fx-background-color: #36384a; " +
-                "-fx-text-fill: white; " +
-                "-fx-font-size: 15pt; " +
-                "-fx-font-family: Roboto;" +
-                "-fx-background-radius: 5px");
+    private void setNumberButtonPressed(Button button) {
+        // Set even brighter background
+        button.setOnMousePressed(event -> {
+            button.setEffect(setDropShadow());
+            if (button.getText().equals("=")) {
+                setButtonStyle(button, "#4b4e68", "#01dfa0");
+            } else if (button.getText().equals(".")) {
+                setButtonStyle(button, "#4b4e68", "#6699ff");
+            } else {
+                setButtonStyle(button, "#4b4e68", "#404459");
+            }
+        });
+
+        // Set the background back to when mouse hovers
+        button.setOnMouseReleased(event -> {
+            button.setEffect(setDropShadow());
+            if (button.getText().equals("=")) {
+                setButtonStyle(button, "#36384a", "#01dfa0");
+            } else if (button.getText().equals(".")) {
+                setButtonStyle(button, "#36384a", "#6699ff");
+            } else {
+                setButtonStyle(button, "#36384a", "#404459");
+            }
+        });
+    }
+
+    /**
+     * Adds the mouse hover handlers for a given number button
+     *
+     * @param button the button for which a hover effect should be added
+     */
+    public void setNumberButtonHover(Button button) {
+        // Set brighter background when mouse enters the button
+        button.setOnMouseEntered(event -> {
+                    button.setEffect(setDropShadow());
+                    if (button.getText().equals("=")) {
+                        setButtonStyle(button, "#36384a", "#01dfa0");
+                    } else if (button.getText().equals(".")) {
+                        setButtonStyle(button, "#36384a", "#6699ff");
+                    } else {
+                        setButtonStyle(button, "#36384a", "#404459");
+                    }
+                });
+
+        // Back to normal background color after the mouse exited
+        button.setOnMouseExited(event -> styleNumberButtons(button));
+    }
+
+    /**
+     * Adds the mouse hover handlers for a given non number button
+     *
+     * @param button the button for which a hover effect should be added
+     */
+    public void setNonNumberButtonHover(Button button) {
+        // Set brighter background when mouse enters the button
+        button.setOnMouseEntered(event -> {
+            button.setEffect(setDropShadow());
+            if (button.getText().equals("AC")) {
+                setButtonStyle(button, "#36384a", "#fc5e87");
+            } else {
+                setButtonStyle(button, "#36384a", "#ffc093");
+            }
+        });
+
+        // Back to normal background color after the mouse exited
+        button.setOnMouseExited(event -> styleNonNumberButtons(button));
     }
 
     /**
@@ -185,21 +270,64 @@ public class CalculationButtons {
     }
 
     /**
-     * Adds DropShadow and Css Styling to each button
+     * Adds DropShadow and Css Styling to each number button
      *
      * @param button the button that is styled
      */
-    private void styleButtons(Button button) {
+    private void styleNumberButtons(Button button) {
+        button.setEffect(setDropShadow());
+        if (button.getText().equals("=")) {
+            setButtonStyle(button, "#1c1e27", "#01dfa0");
+        } else if (button.getText().equals(".")) {
+            setButtonStyle(button, "#1c1e27", "#6699ff");
+        } else {
+            setButtonStyle(button, "#1c1e27", "#606685");
+        }
+    }
+
+    /**
+     * Adds DropShadow and Css Styling to each non number button
+     *
+     * @param button the button that is styled
+     */
+    private void styleNonNumberButtons(Button button) {
+        button.setEffect(setDropShadow());
+        if (button.getText().equals("AC")) {
+            setButtonStyle(button, "#1c1e27", "#fc5e87");
+        } else {
+            setButtonStyle(button, "#1c1e27", "#ffc093");
+        }
+    }
+
+    /**
+     * Creates a new DropShadow
+     *
+     * @return the created dropShadow
+     */
+    private DropShadow setDropShadow() {
         DropShadow dropShadow = new DropShadow();
         dropShadow.setOffsetX(1);
         dropShadow.setOffsetY(1);
         dropShadow.setWidth(10);
         dropShadow.setHeight(10);
-        button.setEffect(dropShadow);
-        button.setStyle("-fx-background-color: #2e303f; " +
+        return dropShadow;
+    }
+
+    /**
+     * Set the css styling of given button
+     *
+     * @param button where the styling should be added
+     * @param backgroundColor the color for the background
+     * @param borderColor the color for the border
+     */
+    private void setButtonStyle(Button button, String backgroundColor, String borderColor) {
+        button.setStyle("-fx-background-color: " + backgroundColor + "; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 15pt; " +
                 "-fx-font-family: Roboto;" +
-                "-fx-background-radius: 5px");
+                "-fx-background-radius: 5px;" +
+                "-fx-border-width: 1;" +
+                "-fx-border-color: " + borderColor + ";" +
+                "-fx-border-radius: 5px;");
     }
 }

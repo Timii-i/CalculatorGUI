@@ -92,8 +92,7 @@ public class Token {
             type = Type.CONSTANT;
             constant = cons.get(value);
         } else {
-            CalculationLabels calculationLabels = new CalculationLabels();
-            calculationLabels.setResultLabel("Error");
+            CalculationLabels.setResultLabel("Error");
 
             throw new IllegalStateException("Programing Error! Implement: " + value);
         }

@@ -122,9 +122,8 @@ public class Calculator {
         try {
             if (n >= 1) { return n * factorial(n - 1); }
             else { return 1; }
-        } catch (StackOverflowError soe){
-            CalculationLabels calculationLabels = new CalculationLabels();
-            // show "Error" in the resultLabel if an StackOverflow appears
+        } catch (Exception soe){
+            // show "Error" in the resultLabel if an Exception appears
             CalculationLabels.putError();
 
             soe.printStackTrace();

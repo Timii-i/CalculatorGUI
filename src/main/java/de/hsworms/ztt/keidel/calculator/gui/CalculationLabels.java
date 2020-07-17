@@ -133,5 +133,8 @@ public class CalculationLabels {
 
     public static void setPostfixLabel(String calculation) { postfixLabel.setText(calculation); }
 
+    /**
+     * Display "Error" text in the resultLabel
+     */
     public static void putError() { setResultLabel("Error"); }
 }

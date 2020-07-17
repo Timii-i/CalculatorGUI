@@ -37,7 +37,7 @@ public class CalculationButtons {
             buttons[i] = new Button(buttonText[i]);
             setupButtonSize(buttons[i]);
 
-            // Colors the button borders accordingly if they're the "AC", "=", ".", non number and number button
+            // Colors the button borders differently compared to the "AC", "." and "=" the number buttons:
             if (i <= 10 || (i >= 14 && i <= 15) || (i >= 19 && i <= 20) || (i >= 24 && i <= 25) || i == 29) {
                 styleNonNumberButtons(buttons[i]);
                 // Add a button hover effect
@@ -105,6 +105,7 @@ public class CalculationButtons {
 
                 }
                 catch (IOException e) {
+                    CalculationLabels.putError();
                     e.printStackTrace();
                 }
                 break;
@@ -204,7 +205,7 @@ public class CalculationButtons {
             }
         });
 
-        // Set the background back to when mouse hovers
+        // Set the background back to how it looks when the mouse hovers over the button
         button.setOnMouseReleased(event -> {
             button.setEffect(setDropShadow());
             if (button.getText().equals("=")) {

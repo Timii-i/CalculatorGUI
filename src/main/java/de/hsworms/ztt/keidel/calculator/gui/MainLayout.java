@@ -54,7 +54,9 @@ public class MainLayout extends Application{
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
         // Hide the standard windowDecoration
-        stage.initStyle(StageStyle.TRANSPARENT);
+        if (stage.getStyle() != StageStyle.TRANSPARENT) {
+            stage.initStyle(StageStyle.TRANSPARENT);
+        }
 
         stage.setScene(scene);
         stage.show();

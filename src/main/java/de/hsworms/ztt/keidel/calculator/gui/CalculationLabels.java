@@ -35,6 +35,7 @@ public class CalculationLabels {
         postfixLabel.setMaxSize(1920, 50);
         postfixLabel.setAlignment(Pos.BASELINE_RIGHT);
         postfixLabel.setWrapText(false);
+        postfixLabel.setId("postfixLabel");
         postfixLabel.setStyle("-fx-background-color: #1c1e27; " +
                 "-fx-text-fill: white; " +
                 "-fx-padding: 0 10 0 0; " +
@@ -54,6 +55,7 @@ public class CalculationLabels {
         infixLabel.setMaxSize(1920, 50);
         infixLabel.setAlignment(Pos.BASELINE_RIGHT);
         infixLabel.setWrapText(false);
+        infixLabel.setId("infixLabel");
         infixLabel.setStyle("-fx-background-color: #1c1e27; " +
                 "-fx-text-fill: white; " +
                 "-fx-padding: 0 10 0 0; " +
@@ -78,6 +80,7 @@ public class CalculationLabels {
 
         resultLabel.setAlignment(Pos.BASELINE_RIGHT);
         resultLabel.setWrapText(false);
+        resultLabel.setId("resultLabel");
         resultLabel.setStyle("-fx-background-color: #1c1e27; " +
                 "-fx-text-fill: white; " +
                 "-fx-padding: 0 10 0 0; " +

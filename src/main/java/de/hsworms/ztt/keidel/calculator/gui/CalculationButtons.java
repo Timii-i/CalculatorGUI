@@ -35,6 +35,7 @@ public class CalculationButtons {
         for (int i = 0; i < buttonText.length; i++) {
             String buttonName = buttonText[i];
             buttons[i] = new Button(buttonText[i]);
+            buttons[i].setId(buttonName);
             setupButtonSize(buttons[i]);
 
             // Colors the button borders differently compared to the "AC", "." and "=" the number buttons:

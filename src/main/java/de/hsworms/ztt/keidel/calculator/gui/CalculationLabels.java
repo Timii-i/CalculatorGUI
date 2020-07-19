@@ -102,7 +102,7 @@ public class CalculationLabels {
             resultText.setFont(Font.font(fontSize));
 
             // Checks if the width of the text is bigger than the width of the label. If yes divide the fontSize with 1.2
-            if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 20 && fontSize > 15) {
+            if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 10) {
                 fontSize /= 1.2;
                 resultLabel.setStyle("-fx-background-color: #1c1e27; " +
                         "-fx-text-fill: white; " +

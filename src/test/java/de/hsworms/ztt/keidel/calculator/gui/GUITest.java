@@ -373,15 +373,18 @@ public class GUITest extends ApplicationTest {
         clickOn(sevenButton);
         clickOn(eightButton);
         clickOn(nineButton);
+        clickOn(multiplyButton);
         clickOn(leftBracketButton);
         clickOn(twoButton);
         clickOn(exponentButton);
         clickOn(twoButton);
         clickOn(rightBracketButton);
+        clickOn(multiplyButton);
         clickOn(sqrtButton);
         clickOn(oneButton);
         clickOn(sixButton);
         clickOn(rightBracketButton);
+        clickOn(multiplyButton);
         clickOn(fiveButton);
         clickOn(subtractButton);
         clickOn(eightButton);
@@ -391,7 +394,7 @@ public class GUITest extends ApplicationTest {
         clickOn(sqrtButton);
         clickOn(fourButton);
         clickOn(rightBracketButton);
-        clickOn(plusButton);
+        clickOn(divideButton);
         clickOn(logButton);
         clickOn(threeButton);
         clickOn(rightBracketButton);
@@ -418,7 +421,25 @@ public class GUITest extends ApplicationTest {
         clickOn(divideButton);
         clickOn(twoButton);
         clickOn(equalsButton);
-        Assertions.assertThat(resultLabel).hasText("22.9937651");
+        Assertions.assertThat(resultLabel).hasText("544360.4723824");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_postfixLabel(){
+        clickOn(sevenButton);
+        clickOn(plusButton);
+        clickOn(eightButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(postfixLabel).hasText("7 8 + ");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_infixLabel(){
+        clickOn(fiveButton);
+        clickOn(plusButton);
+        clickOn(sevenButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(infixLabel).hasText("5 + 7");
         clickOn(acButton);
     }
 

@@ -4,14 +4,10 @@ package de.hsworms.ztt.keidel.calculator.gui;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit.ApplicationTest;
-import org.testfx.service.query.NodeQuery;
-
-
 
 
 public class GUITest extends ApplicationTest {
@@ -29,7 +25,7 @@ public class GUITest extends ApplicationTest {
     Button sevenButton;
     Button eightButton;
     Button nineButton;
-    Button sumButton;
+    Button equalsButton;
     Button plusButton;
     Button subtractButton;
     Button dotButton;
@@ -69,7 +65,7 @@ public class GUITest extends ApplicationTest {
         sevenButton = lookup("#7").query();
         eightButton = lookup("#8").query();
         nineButton = lookup("#9").query();
-        sumButton = lookup("#=").query();
+        equalsButton = lookup("#=").query();
         plusButton = lookup("#+").query();
         subtractButton = lookup("#-").query();
         //dotButton = lookup("#.").query();
@@ -151,7 +147,7 @@ public class GUITest extends ApplicationTest {
         clickOn(fourButton);
         clickOn(plusButton);
         clickOn(fiveButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("9.0");
         clickOn(acButton);
     }
@@ -162,7 +158,7 @@ public class GUITest extends ApplicationTest {
         clickOn(plusButton);
         clickOn(twoButton);
         clickOn(sevenButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("40.0");
         clickOn(acButton);
     }
@@ -171,7 +167,7 @@ public class GUITest extends ApplicationTest {
         clickOn(fiveButton);
         clickOn(subtractButton);
         clickOn(threeButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("2.0");
         clickOn(acButton);
     }
@@ -182,7 +178,7 @@ public class GUITest extends ApplicationTest {
         clickOn(subtractButton);
         clickOn(fourButton);
         clickOn(sixButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("13.0");
         clickOn(acButton);
     }
@@ -191,7 +187,7 @@ public class GUITest extends ApplicationTest {
         clickOn(eightButton);
         clickOn(multiplyButton);
         clickOn(twoButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("16.0");
         clickOn(acButton);
     }
@@ -202,7 +198,7 @@ public class GUITest extends ApplicationTest {
         clickOn(multiplyButton);
         clickOn(oneButton);
         clickOn(threeButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("273.0");
         clickOn(acButton);
     }
@@ -211,7 +207,7 @@ public class GUITest extends ApplicationTest {
         clickOn(sixButton);
         clickOn(divideButton);
         clickOn(threeButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("2.0");
         clickOn(acButton);
     }
@@ -222,7 +218,7 @@ public class GUITest extends ApplicationTest {
         clickOn(divideButton);
         clickOn(oneButton);
         clickOn(threeButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("3.0");
         clickOn(acButton);
     }
@@ -239,7 +235,7 @@ public class GUITest extends ApplicationTest {
         clickOn(multiplyButton);
         clickOn(fiveButton);
         clickOn(rightBracketButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("26.0");
         clickOn(acButton);
     }
@@ -250,7 +246,7 @@ public class GUITest extends ApplicationTest {
         clickOn(twoButton);
         clickOn(multiplyButton);
         clickOn(eightButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("23.0");
         clickOn(acButton);
     }
@@ -261,7 +257,7 @@ public class GUITest extends ApplicationTest {
         clickOn(eightButton);
         clickOn(divideButton);
         clickOn(fourButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("9.0");
         clickOn(acButton);
     }
@@ -272,7 +268,7 @@ public class GUITest extends ApplicationTest {
         clickOn(oneButton);
         clickOn(multiplyButton);
         clickOn(sixButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("3.0");
         clickOn(acButton);
     }
@@ -283,7 +279,7 @@ public class GUITest extends ApplicationTest {
         clickOn(eightButton);
         clickOn(divideButton);
         clickOn(twoButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("0.0");
         clickOn(acButton);
     }
@@ -292,7 +288,7 @@ public class GUITest extends ApplicationTest {
         clickOn(sqrtButton);
         clickOn(fiveButton);
         clickOn(rightBracketButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("2.236068");
         clickOn(acButton);
     }
@@ -301,9 +297,130 @@ public class GUITest extends ApplicationTest {
         clickOn(fourButton);
         clickOn(exponentButton);
         clickOn(threeButton);
-        clickOn(sumButton);
+        clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("64.0");
         clickOn(acButton);
     }
+    @Test
+    public void test_pi(){
+        clickOn(piButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("3.1415927");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_e(){
+        clickOn(eButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("2.7182818");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_modulo(){
+        clickOn(oneButton);
+        clickOn(zeroButton);
+        clickOn(moduloButton);
+        clickOn(twoButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("0.0");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_fac(){
+        clickOn(facButton);
+        clickOn(twoButton);
+        clickOn(rightBracketButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("2.0");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_sin(){
+        clickOn(sinButton);
+        clickOn(fourButton);
+        clickOn(rightBracketButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("-0.7568025");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_cos(){
+        clickOn(cosButton);
+        clickOn(sevenButton);
+        clickOn(rightBracketButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("0.7539023");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_tan(){
+        clickOn(tanButton);
+        clickOn(threeButton);
+        clickOn(rightBracketButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("-0.1425465");
+        clickOn(acButton);
+    }
+    @Test
+    public void test_all_buttons(){
+        clickOn(zeroButton);
+        clickOn(oneButton);
+        clickOn(twoButton);
+        clickOn(threeButton);
+        clickOn(fourButton);
+        clickOn(plusButton);
+        clickOn(sixButton);
+        clickOn(sevenButton);
+        clickOn(eightButton);
+        clickOn(nineButton);
+        clickOn(leftBracketButton);
+        clickOn(twoButton);
+        clickOn(exponentButton);
+        clickOn(twoButton);
+        clickOn(rightBracketButton);
+        clickOn(sqrtButton);
+        clickOn(oneButton);
+        clickOn(sixButton);
+        clickOn(rightBracketButton);
+        clickOn(fiveButton);
+        clickOn(subtractButton);
+        clickOn(eightButton);
+        clickOn(moduloButton);
+        clickOn(twoButton);
+        clickOn(plusButton);
+        clickOn(sqrtButton);
+        clickOn(fourButton);
+        clickOn(rightBracketButton);
+        clickOn(plusButton);
+        clickOn(logButton);
+        clickOn(threeButton);
+        clickOn(rightBracketButton);
+        clickOn(plusButton);
+        clickOn(sinButton);
+        clickOn(sixButton);
+        clickOn(rightBracketButton);
+        clickOn(plusButton);
+        clickOn(cosButton);
+        clickOn(nineButton);
+        clickOn(rightBracketButton);
+        clickOn(plusButton);
+        clickOn(tanButton);
+        clickOn(twoButton);
+        clickOn(rightBracketButton);
+        clickOn(plusButton);
+        clickOn(lnButton);
+        clickOn(fourButton);
+        clickOn(rightBracketButton);
+        clickOn(plusButton);
+        clickOn(piButton);
+        clickOn(multiplyButton);
+        clickOn(eButton);
+        clickOn(divideButton);
+        clickOn(twoButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("22.9937651");
+        clickOn(acButton);
+    }
+
 
 }

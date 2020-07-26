@@ -68,7 +68,7 @@ public class GUITest extends ApplicationTest {
         equalsButton = lookup("#=").query();
         plusButton = lookup("#+").query();
         subtractButton = lookup("#-").query();
-        //dotButton = lookup("#.").query();
+        dotButton = lookup("#dot").query();
         acButton = lookup("#AC").query();
         multiplyButton = lookup("#*").query();
         divideButton = lookup("#/").query();
@@ -88,6 +88,12 @@ public class GUITest extends ApplicationTest {
 
     }
 
+    @Test
+    public void test_dot_button(){
+        clickOn(dotButton);
+        Assertions.assertThat(resultLabel).hasText(".");
+        clickOn(acButton);
+    }
     @Test
     public void test_zero_button(){
         clickOn(zeroButton);
@@ -422,6 +428,38 @@ public class GUITest extends ApplicationTest {
         clickOn(twoButton);
         clickOn(equalsButton);
         Assertions.assertThat(resultLabel).hasText("544360.4723824");
+        clickOn(subtractButton);
+        clickOn(fiveButton);
+        clickOn(twoButton);
+        clickOn(twoButton);
+        clickOn(threeButton);
+        clickOn(sixButton);
+        clickOn(zeroButton);
+        clickOn(dotButton);
+        clickOn(fourButton);
+        clickOn(sevenButton);
+        clickOn(twoButton);
+        clickOn(threeButton);
+        clickOn(eightButton);
+        clickOn(twoButton);
+        clickOn(fourButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("22000.0");
+        clickOn(subtractButton);
+        clickOn(twoButton);
+        clickOn(zeroButton);
+        clickOn(zeroButton);
+        clickOn(zeroButton);
+        clickOn(zeroButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("2000.0");
+        clickOn(subtractButton);
+        clickOn(oneButton);
+        clickOn(nineButton);
+        clickOn(nineButton);
+        clickOn(nineButton);
+        clickOn(equalsButton);
+        Assertions.assertThat(resultLabel).hasText("1.0");
         clickOn(acButton);
     }
     @Test

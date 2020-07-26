@@ -35,7 +35,11 @@ public class CalculationButtons {
         for (int i = 0; i < buttonText.length; i++) {
             String buttonName = buttonText[i];
             buttons[i] = new Button(buttonText[i]);
-            buttons[i].setId(buttonName);
+
+            // Adding id's to  each button to test them in the GUITest class
+            if (!buttonName.equals(".")) { buttons[i].setId(buttonName); }
+            else { buttons[i].setId("dot"); }
+
             setupButtonSize(buttons[i]);
 
             // Colors the button borders differently compared to the "AC", "." and "=" the number buttons:

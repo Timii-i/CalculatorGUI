@@ -102,26 +102,35 @@ public class CalculationLabels {
             resultText.setFont(Font.font(fontSize));
 
             // Checks if the width of the text is bigger than the width of the label. If yes divide the fontSize with 1.2
-            if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 10) {
-                fontSize /= 1.2;
-                resultLabel.setStyle("-fx-background-color: #1c1e27; " +
-                        "-fx-text-fill: white; " +
-                        "-fx-padding: 0 10 0 0; " +
-                        "-fx-font-family: Roboto; " +
-                        "-fx-background-radius: 5px; " +
-                        "-fx-font-size: " + fontSize + "px");
+            if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 10 && fontSize >= 40) {
+                fontSize /= 1.4;
+                System.out.println("1: " + fontSize);
             }
 
-            // If the width of the text is smaller than 1.5 of the label width and the fontSize is smaller than 60 scale the font back up to 60
-            else if (resultText.getLayoutBounds().getWidth() <= (resultLabel.getBoundsInLocal().getWidth() / 1.5) && fontSize < 60) {
-                fontSize = 60;
-                resultLabel.setStyle("-fx-background-color: #1c1e27; " +
-                        "-fx-text-fill: white; " +
-                        "-fx-padding: 0 10 0 0; " +
-                        "-fx-font-family: Roboto; " +
-                        "-fx-background-radius: 5px; " +
-                        "-fx-font-size: " + fontSize + "px");
+            // Checks if the width of the text is bigger than the width of the label. If yes divide the fontSize with 1.2
+            else if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 10 && fontSize < 40) {
+                fontSize /= 1.1;
+                System.out.println("2: " + fontSize);
             }
+
+            // If the width of the text is smaller than half of the label width and the fontSize is smaller than 60 scale the font back up to 40
+            else if (resultText.getLayoutBounds().getWidth() <= (resultLabel.getBoundsInLocal().getWidth() / 2) && fontSize < 60) {
+                fontSize = 40;
+                System.out.println("3: " + fontSize);
+            }
+
+            // If the width of the text is smaller than a quarter of the label width and the fontSize is smaller than 60 scale the font back up to 60
+            else if (resultText.getLayoutBounds().getWidth() <= (resultLabel.getBoundsInLocal().getWidth() / 4) && fontSize < 60) {
+                fontSize = 60;
+                System.out.println("4: " + fontSize);
+            }
+
+            resultLabel.setStyle("-fx-background-color: #1c1e27; " +
+                    "-fx-text-fill: white; " +
+                    "-fx-padding: 0 10 0 0; " +
+                    "-fx-font-family: Roboto; " +
+                    "-fx-background-radius: 5px; " +
+                    "-fx-font-size: " + fontSize + "px");
         });
     }
 

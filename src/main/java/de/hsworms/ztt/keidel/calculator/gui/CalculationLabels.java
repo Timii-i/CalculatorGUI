@@ -101,13 +101,13 @@ public class CalculationLabels {
             Text resultText = new Text(resultLabel.getText());
             resultText.setFont(Font.font(fontSize));
 
-            // Checks if the width of the text is bigger than the width of the label. If yes divide the fontSize with 1.2
+            // Checks if the width of the text is bigger than the width of the label and the fontSize is at least 40. If yes divide the fontSize with 1.4
             if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 10 && fontSize >= 40) {
                 fontSize /= 1.4;
                 System.out.println("1: " + fontSize);
             }
 
-            // Checks if the width of the text is bigger than the width of the label. If yes divide the fontSize with 1.2
+            // Checks if the width of the text is bigger than the width of the label and the fontSize is at less than 40. If yes divide the fontSize with 1.1
             else if (resultText.getLayoutBounds().getWidth() >= resultLabel.getBoundsInLocal().getWidth() - 10 && fontSize < 40) {
                 fontSize /= 1.1;
                 System.out.println("2: " + fontSize);
